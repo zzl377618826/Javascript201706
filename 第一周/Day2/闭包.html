@@ -54,10 +54,10 @@
             console.log(num); // 被修改后的 上级fe的 num
         }
     }
-   var f = fe();
+   var f = fe(); // f 指向的是 fe 返回的 function的引用地址 外部f执行 也就是 fe内部返回的函数 执行
     console.log(f);
-    f(); // 通过 外部 修改了 闭包内部的值
-    f();
+    f(); // 通过 外部调用f() 修改了 fe闭包内部num的值
+    f(); // f执行几次 就会修改几次 fe闭包内部num的值
 </script>
 </body>
 </html>
