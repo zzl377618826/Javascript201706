@@ -65,12 +65,50 @@
     
     ////////////////////////////////////////////////////////////
 
-    function fn(num) { // 形参 num 和 var num 是同一个
-        console.log(num);
-        var num = 100;
-        console.log(num);
-    }
-    fn();
+//    function fn(num) { // 形参 num 和 var num 是同一个
+//        console.log(num);
+//        var num = 100;
+//        console.log(num);
+//    }
+//    fn();
+
+
+
+
+//    in  验证一个属性是否属于这个对象 如果存在这个属性返回 true 否则 false
+
+//    var obj = {id:100};
+//    console.log("id" in obj); // true
+//    console.log("zhufeng" in obj); // false
+    
+//    var num = 100;
+//    console.log("num" in window); // true
+
+
+//    console.log(num); // undefined
+//    var num = 100;
+//    if(!("num" in window)) {
+//        num = 1000;
+//    }
+//    console.log(num);
+
+
+//    var num = 200;
+//    num = (function () {
+//          num = 1000;
+//          console.log(num); // 1000
+//    })();
+//    console.log(num); // undefined
+
+
+//    var num = 200;
+//    (function (num) {
+//        num = 1000;
+//        console.log(num); // 1000
+//    })();
+//    console.log(num); // 200
+
+
 </script>
 </body>
 </html>
