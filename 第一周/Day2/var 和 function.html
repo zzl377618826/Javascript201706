@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    
+    // 预解释(变量提升)的时候（js代码执行之前） 把所有带var和function关键字 声明 或者 定义
+    // var num = undefined 只声明 并赋值为undefined
+    // function fn = xxxfff111 声明加定义
+    
+    
+    console.log(fe);
+    var fe = 123; // fe = undefined => fe = 123
+
+    // js代码执行
+    // console.log(num); // 默认值 undefined 
+    // var num = 200; // 赋值操作 num = undefined => num = 200
+    // console.log(num); // 200
+    
+//    console.log(fn);
+//
+    fn();
+
+    fn();
+
+
+    console.log(fn); // 函数体
+
+    console.log(fn());// 让函数执行 并且 fn()这个整体代表 函数执行后的返回结果（在函数里通过return指定返回值 如果没有指定默认返回undefined）
+
+    function fn() { // 函数体 函数的定义部分 执行到这 直接跳过
+        console.log('fn');
+    }
+
+
+
+</script>
+</body>
+</html>

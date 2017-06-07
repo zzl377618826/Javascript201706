@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+//    console.log(num); // undefined
+//    var num = 200; // 200
+//    function fn() { // 直接跳过
+//        // 当前作用域中预解释 var num = undefined
+//        // 从上到下
+//        console.log(num); // undefined
+//        var num;
+//        num = 1000;
+//        console.log(num); // 1000
+//    }
+//    fn();
+//    console.log(num); // 200
+
+    // 作用链
+    // 当在私有作用域中 遇到一个变量 先看是不是形参变量和有没有在当前这个作用域中预解释过（私有变量），如果不是私有变量就会去上级作用域中进行查找 一直找到window为止 （如果window中也没有就就会 is not defined）
+
+  // 上级作用域是谁
+  // 当前作用域是在哪定义的
+  //  foo => fn => window
+
+//    var total = 0;
+//    function fn() {
+//        // 预解释 total  foo 私有变量
+////        var total = 200;
+//        function foo() {
+//            console.log(total); //0
+//        }
+//        foo();
+//    }
+//    fn();
+
+// 全局预解释为 全局变量 total fn
+//    var total = 10; // 代码执行到这一行的时候 total赋值为 10
+//    function fn() { // 全局中定义的 所以它的上级作用域是 window
+//       console.log(total); // 10
+//       total += 200; // 操作的是全局total total = total + 200 函数执行时候 形成一个私有作用域 遇到一个变量 先看是不是私有变量 不是私有 去上级作用域中查找
+//    }
+//    fn();
+//    console.log(total); // 210
+
+
+var total = 10;
+function fn() {
+    var total = 15; // 在fn的私有作用域中预解释为私有变量
+    console.log(total); // 15
+    total += 200;
+    console.log(total); // 215
+}
+fn();
+console.log(total); // 10
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+
+    // 当你在定义一个全局变量的同时 也是 在给window增加一个全局属性
+
+    //    var num = 300;
+    // console.log(num); // 200
+    //    console.log(window.num);
+    //    window.num = 3000;
+    //    console.log(num);
+    //    num = 10000;
+    //    console.log(window.num);
+
+    //    console.log(num); // 不参加预解释 因为不带var和function  error: not defined
+    //    num = 1000; //不进行预解释  window.num = 1000; 等于给全局中添加了一个属性
+    //    console.log(num);
+
+
+    function fn() {
+        num = 1000; // 给全局中添加一个属性
+        console.log(num); // window.num
+    }
+    fn();
+    //    console.log(num);
+    //    console.log(window.num);
+
+    window.fn();
+</script>
+</body>
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+     // 在代码执行之前先声明一个 num 并且赋值为默认值undefined
+
+     // 加载html页面时 会提供一个供全局js运行的环境 => window(全局作用域)
+
+     // 预解释（变量提升）
+     // 浏览器加载js之前 会把所有带var 和 function关键字的 声明或者定义
+     // 声明：var num;
+     // 定义：num = 12
+
+
+     // 带var和function 预解释的时候 是有区别的 带var只声明 不定义 赋值为默认值undefined 带function 声明加定义
+
+//    var num; // var声明的变量 都有一个默认值undefined
+
+     // 1.预解释 var num = undefined 不定义
+
+     // 2.预解释结束后 开始从上到下 执行js代码
+
+
+//    console.log(num); // 它有一个默认值 undefined
+//    var num = 100; // 赋值操作 带var 只有执行到这一行才会赋值
+//  console.log(num); // 100
+
+//  console.log(fn);
+
+//  function fn() { // fn 在预解释的时候已经定义了 当执行到这一行时 不会再定义 直接跳过
+//         console.log('fn');
+//     }
+//     console.log(fn);
+
+    // 预解释
+
+    // 带var和function 预解释时候区别
+    // 1.带var只声明 并且赋值为默认值undefined
+    // 2.带function 声明加定义（函数体）
+
+
+    // 全局作用域和私有作用域（供js代码执行的环境）
+    // 全局作用域：window
+    // 私有作用域：函数执行的时候形成的作用域
+
+    // 函数执行提供一个js代码执行的私有作用域
+
+     //    function fn() {
+     //        console.log('fn');
+     //    }
+     //     fn();
+
+
+     
+//     console.log(num); // undefined
+//     var num = 100;
+//     function fe() {
+//         var num = 200;
+//         console.log(num); // 200
+//     }
+//     fe();
+//     console.log(num); // 100
+
+     // 预解释只发生在当前作用域中  最开始先对全局作用域预解释 函数执行执行的时候(目的让函数体里面js代码执行) 形成私有作用域
+     // 1.形参赋值 
+     // 2.预解释
+     // 3.代码从上到下执行
+
+
+     // 全局变量和私有变量
+     // 全局变量：在全局作用域中预解释的变量
+     // 私有变量：在私有作用域中预解释的变量 和 形参
+     
+     
+//    function add(a, b) {
+//        console.log(a, b);
+//        console.log(num); // undefined
+//        var num = 100;
+//        console.log(num); // 100
+//
+//        function foo() {
+//            console.log('foo');
+//        }
+//        foo();
+//      console.log(num);
+//      console.log(foo);
+//    }
+//    add(10, 20);
+//    console.log(num);
+//    console.log(foo);
+
+   var num = 100;
+    function bar(say) {
+        console.log(say); // 123
+        var num = 300;
+        console.log(num); // 私有变量
+    }
+    bar(123);
+    console.log(num); // 全局变量
+
+// console.log(say);
+
+</script>
+</body>
+</html>
