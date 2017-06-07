@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    // 最开始是全局中进行预解释 把全局中 所有带var和function关键字的进行声明或定义
+
+    // 一、不管if条件是否成立都会进行预解释
+    // 1. var 声明并且赋值为undefined
+    // 2. function 声明并且赋值为undefined
+
+//    console.log(num);
+//    if(false) { // 不会形成作用域 所以里面代码 属于当前作用域 的js代码
+//        var num = 100;
+//    }
+//    console.log(num);
+
+
+//    console.log(fn); // undefined
+//    fn();
+//    if(true) {
+//        function fn() {
+//            console.log('fn');
+//        }
+//    }
+//    console.log(fn);
+//    fn();
+    
+//    console.log(cc);
+//    if(true){
+//        var cc = 100; // 赋值操作
+//    }
+//
+//    console.log(cc);
+
+
+    ///////////////////////////////////////////////////////
+
+    // 二、return 的返回值不会进行预解释  return下面的代码 依然进行预解释 只是 代码执行的时候 不会进行赋值操作
+
+//    var num = 200;
+//    function fn() {
+////       console.log(fe);
+//        console.log(num); // undefined
+//        return function fe() { // 将fe当做返回值 返回  return 的返回值不进行预解释
+//            console.log('fe');
+//        };
+//       var num = 1000; // 只是代码从上到下执行的时候 不会执行赋值操作 但是依然进行预解释
+//    }
+//    var f = fn();
+
+    ///////////////////////////////////////////////////////////
+
+    //  三、等号右边只是作为一个值 不会进行预解释
+//    console.log(fn);
+//    fn();
+//   function fn() {
+//       console.log('123');
+//   }
+//   console.log(fn);
+//  fn();
+
+    
+// 函数表达式
+    
+//    console.log(fn); // 预解释的时候 声明并赋值为undefined
+//    fn(); // => undefined()
+
+//    var fn = function () { // 函数表达式 执行到这一行的时候才会进行赋值操作
+//        console.log(123);
+//    };
+//
+//    console.log(fn);
+//    fn();
+    
+
+// 四、自执行函数 不进行预解释
+
+    var cc = 1000;
+    (function () { // 自己内部在执行的时候 是会进行预解释的 像普通函数一样 形成私有作用域 形参赋值 预解释 代码从上到下执行
+        console.log(cc); // undefined
+//        var cc = 'zhufeng';
+        console.log('自执行函数');
+    })();
+
+
+</script>
+</body>
+</html>

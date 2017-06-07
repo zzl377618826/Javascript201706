@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+
+    // 预解释的时候 带var 不重复声明   默认值undefined
+    //    console.log(num); // undefined
+    //    var num = 111; // 但是代码执行这一行重新定义
+    //    console.log(num); // 111
+    //    var num = 222; // 但是代码执行这一行重新定义
+    //    console.log(num); // 222
+
+
+    // 预解释的时候 带function 不重复声明 从新定义（最终fn在预解释的时候赋值为最后一个function）
+
+    //    console.log(fn);
+    //    fn(); // 33333
+
+    //    function fn() {
+    //        console.log(11111);
+    //    } // 代码执行到函数定义部分 直接跳过 因为 函数的定义在预解释的时候 已经完成了
+
+    //    fn(); // 33333
+    //    function fn() {
+    //        console.log(22222);
+    //    }
+
+    //    fn(); // 33333
+
+    //    function fn() {
+    //        console.log(33333);
+    //    }
+    //    fn(); // 33333
+
+    
+    
+    //////////////////////////////////////////////////////////////////
+
+
+    //    fe(); // 33
+    //
+    //    function fe() {console.log(1);}
+    //    fe(); // 33
+    //
+    //    function fe() {console.log(2);}
+    //    fe(); // 33
+    //
+    //    function fe() {console.log(33);} // 预解释完成的时候 最终将fe 定义为这个 函数
+    //    fe(); // 33
+    //
+    //    console.log(fe);
+    //    // 执行到这一行的时候 的赋值操作
+    //    var fe = function () {console.log(55);}; // 当执行到这一行的时候 fe被重新赋值为这个函数
+    //    console.log(fe);
+    //    fe(); // 55
+    //
+    //    var fe = 124; // 当执行到这一行的时候 fe被重新赋值为 124
+    //    console.log(fe);
+    //    fe(); // 报错
+
+    
+    ////////////////////////////////////////////////////////////
+
+    function fn(num) { // 形参 num 和 var num 是同一个
+        console.log(num);
+        var num = 100;
+        console.log(num);
+    }
+    fn();
+</script>
+</body>
+</html>
