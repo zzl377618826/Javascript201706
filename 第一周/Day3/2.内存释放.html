@@ -6,8 +6,8 @@
 </head>
 <body>
 <script type="text/javascript">
-   // 堆内存的释放
-   // 浏览器默认回收机制 每隔一段时间 就会将 没用被占用的内存回收释放
+    // 堆内存的释放
+    // 浏览器默认回收机制 每隔一段时间 就会将 没用被占用的内存回收释放
 
     var obj = {name: "zhufeng"};
     var obj1 = obj;
@@ -15,45 +15,56 @@
     obj = null; // 空对象指针
     obj1 = null;
 
-// 栈内存 销毁和不销毁
-//   销毁
-//    1.window（栈内存）只有关闭浏览器的时候才会销毁
-//    2.一般情况下 函数执行形成的私有作用域（栈内存），执行完后立即销毁
+    // 栈内存 销毁和不销毁
+    //   销毁
+    //    1.window（栈内存）只有关闭浏览器的时候才会销毁
+    //    2.一般情况下 函数执行形成的私有作用域（栈内存），执行完后立即销毁
 
-//    function fn() {
-//        var total = 0;
-//        total += 1;
-//        console.log(total);
-//    }
-//    fn();
-//    fn();
+    //    function fn() {
+    //        var total = 0;
+    //        total += 1;
+    //        console.log(total);
+    //    }
+    //    fn();
+    //    fn();
 
-//////////////////////////////////////////////////
-//  不销毁
-//  1.函数执行形成一个私有作用域（栈内存） 如果返回一个引用数据类型的值  并且被外部变量占用那么这个栈内存就不能被销毁
+    //////////////////////////////////////////////////
+    //  不销毁
+    //  1.函数执行形成一个私有作用域（栈内存） 如果返回一个引用数据类型的值  并且被外部变量占用那么这个栈内存就不能被销毁
 
-//    function fn() {
-//        return {name: 'zhufeng'} // 在这个栈内存中 开辟一个堆内存 并将引用地址返回到外面
-//    }
-//
-//    var f = fn(); // fn开辟的堆内存 被外部变量 f接收 所以 fn形成了一个不销毁的栈内存
+    //    function fn() {
+    //        return {name: 'zhufeng'} // 在这个栈内存中 开辟一个堆内存 并将引用地址返回到外面
+    //    }
+    //
+    //    var f = fn(); // fn开辟的堆内存 被外部变量 f接收 所以 fn形成了一个不销毁的栈内存
 
-//   var obj = null;
-//   function fn() {
-//       obj = {name: 'zhufeng'}
-//   }
-//
-//   var f = fn();
+    //   var obj = null;
+    //   function fn() {
+
+    //       obj = {name: 'zhufeng'}
+    //   }
+    //
+    //   var f = fn();
 
 
+    //      function fn() {
+    //         return function () {
+    //             console.log('fn');
+    //         }
+    //      }
+    //
+    //      var f = fn();
 
-//      function fn() {
-//         return function () {
-//             console.log('fn');
-//         }
-//      }
-//
-//      var f = fn();
+//    2.不立即销毁 返回一个函数数据类型 并且在外部直接执行 然后 fn形成的栈内存需要到返回的内部函数执行完后 才能销毁
+     function fn() {
+       return function () {
+                 setTimeout(function () {
+                     console.log(123);
+           }, 3000)
+         }
+     }
+
+     fn()(); // 让fn()执行后的返回值（内部函数） 在外部立即执行
 
 
 </script>

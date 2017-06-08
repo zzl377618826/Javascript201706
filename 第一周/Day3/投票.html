@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="btn">点赞</button>
+<p id="count">0</p>
+<script type="text/javascript">
+    var btn = document.getElementById('btn');
+    var count = document.getElementById('count');
+    //    1.利用window不销毁
+    //    var total = 0;
+    //    btn.onclick = function () {
+    //        total++;
+    //        count.innerHTML = total;
+    //    }
+
+    //    2.自己形成一个不销毁的栈内存来保存每一次累加后total的值
+
+    //    btn.onclick = (function () {
+    //        var total = 0;
+    //        return function () {
+    //            total++;
+    //            count.innerHTML = total;
+    //        }
+    //    })();
+
+
+    // 外部变量主动跑到栈内存中去占用
+    //    (function () {
+    //        var total = 0;
+    //        btn.onclick = function () {
+    //            total++;
+    //            count.innerHTML = total;
+    //        }
+    //    })();
+    //    console.log(btn.onclick);
+
+
+    // 每一次得到当前的值  在原有基础上累加 并重新输出到页面
+    //    btn.onclick = function () {
+    //        console.log(count.innerHTML);
+    //        count.innerHTML = ++count.innerHTML;
+    //    }
+
+    // 自定义属性
+    btn.count = 0;
+    btn.onclick = function () {
+        count.innerHTML = ++btn.count;
+        console.log(btn.count);
+    }
+
+
+    // 需求是实现累加
+    // 1.利用window不销毁 将count定义window中 保存每一次被fn修改的值
+    //    var count = 0; // 1
+    //    function fn() {
+    //        count ++;
+    //        console.log(count);
+    //    }
+    //    fn(); // 1
+    //    fn(); // 2
+    //    fn(); // 3
+    //    fn(); // 4
+
+    //    var f = (function () {
+    //        var count = 0;
+    //        return function () {
+    //            count++;
+    //            console.log(count);
+    //        }
+    //    })();
+    //    f(); // 1
+    //    f(); // 2
+</script>
+</body>
+</html>
