@@ -6,58 +6,55 @@
 </head>
 <body>
 <script type="text/javascript">
-    //    var len = 5;
-    //    var fn = function (){
-    //        console.log(this);
-    //    };
-    //    var main = {
-    //        fn : function (fn){
-    //            console.log(this);
-    //            fn();
-    //        },
-    //        len : 10
-    //    };
-    //    main.fn(fn);
+//        var len = 5;
+//        var fn = function (){
+//            console.log(this);
+//        };
+//        var main = {
+//            fn: function (fn){
+//                console.log(this); // main
+//                fn(); // window
+//                arguments[0](); // arguments.0() Arguments
+//            },
+//            len: 10
+//        };
+//        main.fn(fn);
 
 
-    //    function fn1() {
-    //        console.log(this === ary);
-    //    }
-    //    function fn2() {
-    //        console.log(this);
-    //    }
-    //    function fn3() {
-    //    }
-    //    function fn4() {
-    //    }
-    //    var ary = [fn1, fn2, fn3, fn4];
-    //    ary[1]();
-    //    var arry = ary[1];
-    ////    var arry = function fn2 (){
-    ////        console.log(this);
-    ////    };
-
-    //    arry();
+        function fn1() {
+            console.log(this === ary);
+        }
+        function fn2() {
+            console.log(this);
+        }
+        function fn3() {
+        }
+        function fn4() {
+        }
+        var ary = [fn1, fn2, fn3, fn4];
+        ary[1](); // ary.1()  ary
+        var arry = ary[1];
+        arry(); // window
 
     /////////////////////////////////////////////////////////////////////////////////////////////
-//    var num = 5; // 6 -> 7
-//    var obj = {
-//        num: 4, // 5
-//        fn: (function (num) {
-//            num++;
-//            this.num++;
-//            var num = 2;
-//            return function () {
-//                num++;
-//                this.num++;
-//                console.log(num);
-//            }
-//        })()
-//    };
-//    var fn = obj.fn;
-//    fn();
-//    obj.fn();
-//    console.log(this.num, obj.num);
+    var num = 5; // 6 7
+    var obj = {
+        num: 4, // 5
+        fn: (function (num) { // num = 2 3 4
+            num++; // NaN
+            this.num++; // 6
+            var num = 2; // 2
+            return function () {
+                num++; // 3 4
+                this.num++;
+                console.log(num);
+            }
+        })()
+    };
+    var fn = obj.fn;
+    fn(); // 3
+    obj.fn(); // 4
+    console.log(this.num, obj.num); // 7 5
 </script>
 </body>
 </html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="btn">点击</button>
+<script type="text/javascript">
+    var btn = document.getElementById('btn');
+
+    // this 行为主体
+
+    // 1.全局中的this是window
+    // 关于函数执行中的this
+    // 2.在函数中的this 要看函数执行的时候 前面有没有'.' 点前面是谁this就是谁 如果没有点 this就是window
+    // *函数在哪执行和在哪定义 和 this没有关系
+    // 3.自执行函数中的this 永远是window
+    // 4.元素绑定事件中的this 是当前绑定的元素
+
+
+    //    btn.onclick = (function () {
+    //        console.log(this); // window
+    //        return function () {
+    //            console.log(this); // btn
+    //        }
+    //    })()
+
+    //    var obj = {};
+    //    obj.fe =  function () {
+    //        console.log(this);
+    //    };
+    //    btn.onclick = obj.fe;
+
+    //    btn.onclick = function () {
+    //        console.log(this);
+    //    };
+
+
+    //    var obj = {};
+    //
+    //    obj.fe = function () {
+    //        console.log(this); // obj
+    //        (function () {
+    //            console.log(this); // window
+    //        })();
+    //    };
+    //
+    //    obj.fe();
+
+
+    //    (function () {
+    //       console.log(this); // window
+    //    })();
+
+
+    //    var obj = {
+    //       bar:(function () {
+    //           console.log(this); // window
+    //       })()
+    //    }
+
+
+    //    var obj = {name: "zhufeng"};
+    //    function fn() {
+    //        console.log(this); // window
+    //    }
+
+    //    fn();
+    //    window.fn()
+
+    //    obj.fe = fn;
+    //    obj.fe();
+
+    //    function foo2() {
+    //        console.log(this); // obj
+    //        fn();
+    ////        window.fn();
+    //    }
+    //    obj.foo1 = foo2;
+    //    obj.foo1();
+
+
+    //    function fn() {
+    //        console.log(this);
+    //        return function () {
+    //            console.log(this);
+    //        }
+    //    }
+    //    var obj = {};
+    //    var f = fn(); // window
+    //    f(); // window
+    //    obj.f2 = f;
+    //    obj.f2(); // obj
+
+    //    var num = 20;
+    //    function fn() {
+    //        console.log(this.num);
+    //        return function () {
+    //            console.log(this.num += 5);
+    //        }
+    //    }
+    //    var obj = {num: 10};
+    //    var f = fn(); // 20 这个里面this window
+    //    f(); // 25 这个里面this window
+    //    obj.f2 = f;
+    //    obj.f2(); // 15 这里面this是obj
+
+</script>
+</body>
+</html>
