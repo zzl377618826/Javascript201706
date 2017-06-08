@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>选项卡</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul, li {
+            list-style: none;
+        }
+
+        #tab {
+            width: 600px;
+            /*height: 100px;*/
+            margin: 20px auto 0;
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+
+        ul:after {
+            display: block;
+            clear: both;
+            content: "";
+            overflow: hidden;
+        }
+
+        li {
+            float: left;
+            width: calc(100% / 3);
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            cursor: pointer;
+        }
+
+        #tab div {
+            height: 100px;
+            border: 1px solid red;
+            box-sizing: border-box;
+            text-align: center;
+            line-height: 100px;
+            display: none;
+            cursor: pointer;
+        }
+
+        #tab .select {
+            display: block;
+        }
+
+        .show {
+            background-color: rgba(0, 0, 0, 0.6);
+        }
+    </style>
+</head>
+<body>
+<div id="tab">
+    <ul>
+        <li class="show">新闻</li>
+        <li>电影</li>
+        <li>音乐</li>
+    </ul>
+    <div class="select">新闻内容</div>
+    <div>电影内容</div>
+    <div>音乐内容</div>
+</div>
+
+<script>
+    var oDiv = document.getElementById("tab");
+    var oLis = oDiv.getElementsByTagName("li");
+    var oDi = oDiv.getElementsByTagName("div");
+
+
+    // oLis[i].onclick接收 每一次返回的内部函数 形成不销毁
+    // 每一次自执行形成的不销毁栈内存中 都会通过形参的形式来保存这一轮 i的值赋给形参n
+
+    // 弊端：形成多个不销毁的栈内存
+    //    for (var i = 0; i < oLis.length; i++) { // for循环后 i 3
+    //        oLis[i].onclick = (function (n) { // n=0 n=1 n=2
+    //            return function () {
+    //                console.log(n);
+    //                for (var j = 0; j < oLis.length; j++) {
+    //                    oDi[j].className = oLis[j].className = "";
+    //                }
+    //                this.className = "show";
+    //                oDi[n].className = "select";
+    //            }
+    //        })(i); // 0  1 2
+    //    }
+
+    // oLis[n].onclick 主动去不销毁的栈内存中 去占用里面堆内存 形成不销毁
+
+    // 弊端：形成多个不销毁的栈内存
+    for (var i = 0; i < oLis.length; i++) { // for循环后 i 3
+        (function (n) { // n=0 n=1 n=2
+            oLis[n].onclick = function () {
+                for (var j = 0; j < oLis.length; j++) {
+                    oDi[j].className = oLis[j].className = "";
+                }
+                this.className = "show";
+                oDi[n].className = "select";
+            }
+        })(i); // 0  1 2
+    }
+
+
+    // 利用自定义属性（推荐）
+    //    for (var i=0;i<oLis.length;i++){
+    //        oLis[i].move=i; // 通过自定义属性来保存当前这一轮的 i
+    //        oLis[i].onclick=function () {
+    //            for (var i=0;i<oLis.length;i++){
+    //                oLis[i].className="";
+    //                oDi[i].className="";
+    //            }
+    //            this.className="show";
+    //            oDi[this.move].className="select";
+    //        }
+    //    }
+
+</script>
+
+</body>
+</html>
