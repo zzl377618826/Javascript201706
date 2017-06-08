@@ -6,35 +6,35 @@
 </head>
 <body>
 <script>
-    //    function foo() {
-    //        var num = 0;
-    //        function f() {
-    //            console.log(num += 5)
-    //        }
-    //        return f;
-    //    }
-    //    var fo1 = foo();
-    //    fo1();
-    //    fo1();
-    //    var fo2 = foo();
-    //    fo2();
-    //    fo1 = fo2;
-    //    fo1();
+//        function foo() {
+//            var num = 0;
+//            function f() {
+//                console.log(num += 5)
+//            }
+//            return f;
+//        }
+//        var fo1 = foo(); // fo1 接收由于第一个foo执行返回的内部函数
+//        fo1(); // 5
+//        fo1(); // 10
+//
+//        var fo2 = foo(); // fo2 接收由于第二个foo执行返回的内部函数
+//        fo2(); // 5
+//        fo1 = fo2; // 将fo2存储的 第二个foo的内部函数引用地址 赋给 fo1
+//        fo1(); // 10
 
     ////////////////////////////////////////////////
     //
-    //var fer1;
-    //    function far(){
-    //        var count = 0;
-    //        function ff() {
-    //            console.log(count++);
-    //        }
-    ////        window.fer1 = ff;
-    //        fer1 = ff;
-    //    }
-    //    far();
-    //    fer1();
-    //    fer1();
+//    var fer1;
+//        function far(){
+//            var count = 0;
+//            function ff() {
+//                console.log(count++);
+//            }
+//            fer1 = ff;
+//        }
+//        far();
+//        fer1(); // 0
+//        fer1(); // 1
     //
     //
     //
@@ -42,37 +42,41 @@
     //
     //    /////////////////////////////////////////////////////
 //    function fn() {
-//        var count = 0; // 1 2
+//        var count = 0;
 //        return  function (n) {
-//            count++; console.log(count + n);
+//            count++;
+//            console.log(count + n);
 //        }
 //    }
-//    var f1 =fn();
-//    f1(10);
-//    f1(6);
-//    var f2 = fn();
-//    f2(10);
-//    f2(1);
+//    var f1 =fn(); // count = 0 => 1 => 2
+//    f1(10); // 11   n = 10  count++ (1) n+count = 11
+//    f1(6); // 8   n = 6 count++ (2)  n + count = 8
+//
+//    var f2 = fn(); // count = 0 => 1 => 2
+//    f2(10); // 11  n = 10  count++ (1)  n+count = 11
+//    f2(1); // 3  n = 1  count++ (2)   n+count = 3
 //    f1 = f2;
-//    f1(15);
-//    fn()(9);
+//    f1(15); // 18  n = 15  count++ (3) n+count = 18
+//
+//    fn()(9); // 10 count = 0   n = 9  count++(1)  n+count = 10
+
     //
     //
     //    ///////////////////////////////////////////////////////////
-    //    var obj = {
-    //        num: 3,
-    //        bar: (function () {
-    //              var n = 5;
-    //              return function () {
-    //                  console.log(n += 2);
-    //              }
-    //        })()
-    //    };
-    //    obj.bar();
-    //    obj.bar();
-    //    var fn3 = obj.bar;
-    //    fn3();
-    //    fn3();
+        var obj = {
+            num: 3,
+            bar: (function () {
+                  var n = 5; // 7 9 11 13
+                  return function () {
+                      console.log(n += 2); // 7 9 11 13
+                  }
+            })()
+        };
+        obj.bar();
+        obj.bar();
+        var fn3 = obj.bar;
+        fn3();
+        fn3();
 </script>
 </body>
 </html>
