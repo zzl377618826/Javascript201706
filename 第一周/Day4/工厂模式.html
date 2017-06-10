@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+
+    // 单例模式 （手工生产）人员信息
+    //    var user1 = {
+    //        name: 'weijingyun',
+    //        sex: 0,
+    //        age: 18,
+    //        hobby: '吃樱桃',
+    //        say: function () {
+    //            console.log('my name is' + this.name + 'age：' + this.age +', l hobby is ' + this.hobby);
+    //        }
+    //    };
+    //    user1.say();
+    //
+    //    var user2 = {
+    //        name: 'gaomei',
+    //        sex: 0,
+    //        age: 16,
+    //        hobby: '吃火锅',
+    //        say: function () {
+    //            console.log('my name is' + this.name + 'age：' + this.age +', l hobby is ' + this.hobby);
+    //        }
+    //    };
+    //    user2.say();
+
+
+    // 工厂模式 批量生产 把相同功能代码 放到一个 函数里 减少冗余代码 '函数封装'
+    // '高内聚 低耦合'：减少页面冗余代码 提高代码耦合质量 提高代码重复利用率
+
+    function createUser(name, age, sex, hobby) {
+        var user = new Object;
+        user.name = name;
+        user.age = age;
+        user.sex = sex;
+        user.hobby = hobby;
+        user.say = function () {
+            console.log('my name is ' + this.name + ' age：' + this.age + ', l hobby is ' + this.hobby);
+        };
+        return user;
+    }
+
+    var weijingyun = createUser('weijingyun', 18, '女', '吃新辣道');
+    console.log(weijingyun);
+
+    var gaomei = createUser('gaomei', 18, '女', '游泳');
+    console.log(gaomei);
+
+    weijingyun.say();
+    gaomei.say();
+</script>
+</body>
+</html>

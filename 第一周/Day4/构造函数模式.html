@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    // 构造函数模式 创建一个自定义类 并且创建这个类的实例 （封装组件）
+
+    //    new Array();
+    //    new Object();
+    //    类本身就是一个 函数 它也是函数数据类型的
+    // 自定义类 通常 类名首字母是大写
+    //
+    //    function Tab(name) {
+    //        var a = 100; // 只是一个私有变量 和 实例属性没有关系 只有this.xxx才是给当前实例添加属性
+    //
+    //        // 默认会创建一个对象（实例）
+    //        this.name = name; // 在类中 this 代表当前实例对象 this.xxx 就是给当前实例添加私有属性
+    //        this.say =' hi nihao'
+    //        // 最后默认将这个实例 返回
+    //    }
+    //
+    //    var tab1 = new Tab('liwenli'); // 构造函数模式执行 通过一个new 把Tab当做一个类 执行 并且返回这个类的实例
+    //   console.log(tab1);
+    //
+    //   var tab2 = new Tab('weijingyun');
+    //   console.log(tab2);
+    //
+    //    // 实例都是对象数据类型的
+    //    //  console.log(typeof tab);  'object'
+    //    // 每个实例都是一个单独的个体
+    //   console.log(tab1 === tab2); // false
+    //
+
+
+    //    console.log(Tab()); // 作为一个普通函数 执行
+
+    // 构造函数模式与工厂模式区别
+    // 普通函数执行：形参赋值/预解释 代码从上到下执行  直接函数名()执行
+    // 构造函数模式执行：形参赋值/预解释 ->  默认创建一个实例对象 -> 代码从上到下执行 -> 默认将这个实例对象返回
+    // 构造函数执行 通过一个new 关键字让它执行
+
+    // this
+    // 类中的this指向当前类的实例
+    // 普通函数 看执行的时候前面有没有'.' 点前面是谁this就是谁 否则就是window
+
+    //    function fn() {
+    //
+    //    }
+
+    //    fn();
+    //    window.fn() => fn()
+
+
+    //    function CreateUser(name, age, sex, hobby) {
+    ////        var user = new Object;
+    //        this.name = name;
+    //        this.age = age;
+    //        this.sex = sex;
+    //        this.hobby = hobby;
+    //        this.say = function () {
+    //            console.log('my name is ' + this.name + ' age：' + this.age + ', l hobby is ' + this.hobby);
+    //        };
+    ////        return user;
+    //    }
+    //
+    //    var weijingyun = new CreateUser('weijingyun', 18, '女', '吃新辣道');
+    //    console.log(weijingyun);
+    //
+    //    var gaomei = new CreateUser('gaomei', 18, '女', '游泳');
+    //    console.log(gaomei);
+    //    console.log(weijingyun.say === gaomei.say); // false
+    //
+    //    // instanceof 用来检测一个实例是否属于这个类
+    //
+    //    console.log(gaomei instanceof CreateUser);
+    //
+    //    console.log([] instanceof Array);
+    //    console.log({} instanceof Object);
+
+    // 万物皆对象  都属于 Object这个基类的实例
+    //    console.log(Array instanceof Object);
+    //    console.log([] instanceof Object);
+    //    console.log(Number instanceof Object);
+    //    console.log(Function instanceof Object);
+
+
+    //    console.log(CreateUser instanceof Object);
+    //    console.log(gaomei instanceof CreateUser);
+    //    console.log(gaomei instanceof Object);
+
+
+    //    var arr1 = new Array(1,2);
+    //    var arr2 = new Array(1,2);
+    //    console.log(arr1 === arr2);
+
+
+    // 创建自定义类 
+
+    function Person() {
+        this.name = 'nihao'; // 类中this 当前实例对象
+        return {id: 1, age: 18} // 如果手工指定 返回一个引用数据类型 就会将 当前实例对象覆盖掉 返回的 就不是 当前类实例
+//        return 123 // 基本数据类型没有任何影响
+    }
+
+    var res = new Person(); //构造函数模式 当做一个类执行 并且返回和创建这个类的实例
+    console.log(res);
+    console.log(res instanceof Person); // false
+    Person(); // 作为一个普通函数执行
+
+
+    // instanceof 基本数据类型需要实例化
+
+    console.log(1 instanceof Number); // false
+
+    var n = new Number(1);
+
+    console.log(n);
+    console.log(n + 10);
+    console.log(n instanceof Number); // true
+
+
+    var obj = {};
+    console.log(obj instanceof Object);
+</script>
+</body>
+</html>

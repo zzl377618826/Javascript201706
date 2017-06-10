@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        html, body {
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+<input type="button" value="red"><input type="button" value="green"><input type="button" value="orange">
+<script type="text/javascript">
+    var oInps = document.getElementsByTagName('input');
+    var arr = ['red', 'green', 'orange'];
+
+    //    for(var i = 0; i < oInps.length; i++) {
+    //        oInps[i].ind = i;
+    //        oInps[i].onmouseover = function () {
+    //            document.body.style.backgroundColor = arr[this.ind];
+    //        }
+    //    }
+
+
+//    for (var i = 0; i < oInps.length; i++) {
+//        oInps[i].onmouseover = (function (n) {
+//            return function () {
+//                document.body.style.backgroundColor = arr[n];
+//            }
+//        })(i);
+//    }
+
+        for (var i = 0; i < oInps.length; i++) {
+           (function (n) {
+               oInps[i].onmouseover = function () {
+                    document.body.style.backgroundColor = arr[n];
+                }
+            })(i);
+        }
+
+
+
+    //    //////////////////////////////////////////////////////////////////////////////////////
+
+    //    var num = 1; // 3 5
+    //    var obj = {num: 2}; // 4
+    //    obj.fn = (function (num) { // num = 1
+    //        this.num += 2; // 3
+    //        num--; // 0 0
+    //        return function (n) { // n =1 n = 2
+    //            this.num += 2;
+    //            num--;
+    //            console.log(n + ++num);
+    //        }
+    //    })(this.num); // 1
+    //    console.log(this);
+    //    var fn = obj.fn;
+    //    fn(1); // 1
+    //    obj.fn(2); // 2
+    //    console.log(num, obj.num); // 5 4
+
+    //    ///////////////////////////////////////////////////////////////////////////////////////
+    //    var num = 20;
+    //    var obj = {
+    //        num: 30,
+    //        fn: (function (num) {
+    //            this.num *= 3;
+    //            num += 15;
+    //            var num = 45;
+    //            return function () {
+    //                this.num *= 4;
+    //                num += 20;
+    //                console.log(num);
+    //            }
+    //        })(num)
+    //    };
+    //    var fn = obj.fn;
+    //    fn();
+    //    obj.fn();
+    //    console.log(window.num, obj.num);
+
+    //
+    //    function pre(cur) {
+    //        var pre = cur.previousSibling;
+    //        while (pre && pre.nodeType !== 1) {
+    //            pre = pre.previousSibling;
+    //        }
+    //        return pre;
+    //    }
+
+
+    //    var name = '中国';
+    //    var age = 5000;
+    //    name = (function (name, age) { // name = '中国'  age = undefined
+    //        arguments[0] = '珠峰'; // name = '珠峰'
+    //        age = age || this.age; // age = 5000
+    //        console.log(name, age); // '珠峰' 5000
+    //    })(name);
+    //
+    //    console.log(name, age); // undefined 5000
+
+
+    //    var ary = [100, 200];
+    //    ~function (ary) {
+    //        ary.length--; // [100]
+    //        ary = [];
+    //        ary[ary.length] = 300; // [300]
+    //        alert(ary); // '300'
+    //    }(ary);
+    //    alert(ary); // '100'
+
+
+    //    function fn(i) { // i = 7
+    //        return function (n) { // n = 8
+    //            console.log(n * (++i)); // 8 * 8 = 64
+    //        }
+    //    }
+    //
+    //    var f = fn(2);
+    //    f(3); // 9
+    //    f(4); // 16
+    //
+    //    fn(5)(6); // 36
+    //
+    //    fn(7)(8); // 64
+
+
+    //var num = 1; // 4 14
+    //var obj = {num: 2}; // 22
+    //obj.fn = (function (num) { // num = 2
+    //    this.num = num * 2; // window.num = 4
+    //    num++; // 3 4 5
+    //    return function (n) { // n = 10; n = 20
+    //        this.num += n; // window.num += 10; obj.num += n 2 += 20
+    //        num++;
+    //        console.log(num);
+    //    }
+    //})(obj.num); // 2
+    //var fn = obj.fn;
+    //fn(10); // 4
+    //obj.fn(20); // 5
+    //console.log(num, obj.num); // 14 22
+
+
+</script>
+</body>
+</html>
