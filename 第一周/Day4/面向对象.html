@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    // 面向对象 oo
+    // 面向对象编程语言 Java
+
+    // 万物皆对象 泛指 自然界  Object（基类）
+    // 类 对对象的细分 人类 植物类
+    // 实例 类中的具体事物 人是人类的实例
+
+    // 常用的内置类
+    // Number String Boolean Array Object Date Function ...
+    // Array: [] [1,2] Array的实例
+    // String: '' '123'
+    // Object: {} {name:'zhufeng'}
+
+
+//    var obj = new Object(); // 实例化创建 new 类  返回这个类的实例
+//    var obj1 = {};
+//    [].slice();
+//    '123'.slice()
+
+//    console.log(new Array(1, 2, 3, 5));
+//    console.log(new Array(10)); // length = 10
+
+
+   // 类三大特性 继承 封装 多态
+   // 继承：子类可以继承父类
+   // 封装 封装在类上的属性方法 供当前实例 来使用
+   // 多态：重载和重写 （Js没有重载）
+   //   重写 子类重写父类
+   //   重载（类似）
+
+//    function int() {
+//        console.log('aaa');
+//    }
+//    function int() {
+//        console.log('cccc');
+//    }
+
+    function int(param) {
+       if(typeof param === 'string') {
+           console.log('这是个字符串');
+       } else if(typeof param === 'number') {
+           console.log('这是一个数字');
+       } else if(typeof param === 'object') {
+           console.log('这是一个对象');
+       }
+    }
+    int('');
+    int(12);
+    int({});
+
+</script>
+</body>
+</html>
