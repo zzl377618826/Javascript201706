@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    // 每一个函数数据类型（普通函数 类（内置类 和 自定义类））,都有一个天生自带的属性prototype（原型）, 这个属性是一个对象数据类型 （用来存储实例的公用属性和方法）
+    // 每一个prototype（原型）上, 都有一个天生自带的属性constructor(构造函数), 指向当前函数本身（类本身）
+    // 每一个对象数据类型（普通对象 实例 原型 函数），都有一个自带属性__proto__,指向当前实例所属类的原型
+
+    // 每一个对象数据类型 都是 Object这个基类的实例 Object.prototype没有__proto__这个属性
+
+
+
+
+    function Tab(name) { // 类中 this.xxx是给当前实例添加的私有属性
+        this.name = name;
+        this.pub = '这是私有pub';
+//        this.say = '这是私有的say';
+    }
+
+    // 在原型上添加公用属性和方法
+    // Tab.prototype.say ='这是原型上公用的属性';
+     Tab.prototype.hi = 'hello Tab';
+     Object.prototype.say = '这是基类上的say属性';
+     Object.prototype.pub = '这是公有的属性';
+
+    var tab1 = new Tab('js');
+    var tab2 = new Tab('css');
+
+    console.log(tab1);
+    console.log(tab2);
+
+    // 原型链模式
+    // 对象名.属性名 首先找自己的私有属性里有没有,如果是私有的则获取的是 私有属性，如果没有 则通过__proto__找到所属类的原型上公有属性和方法，如果有就获取公有的， 如果没有则继续通过原型的__proto__, 一直找到Object.prototype
+    console.log(tab1.say);
+
+    // in 验证一个属性是否属于这个对象
+    // hasOwnProperty 用来检测是否是私有属性
+//    console.log(tab1.hasOwnProperty);
+//
+//    console.log(tab1.hasOwnProperty('say')); // true
+//    console.log(tab1.hasOwnProperty('pub')); // false
+//
+//    console.log('pub' in tab1);
+//    console.log('name' in tab1);
+
+    for (var key in tab1) {
+        console.log(key);
+        if(tab1.hasOwnProperty(key)) { // 预防将原型上自定义属性遍历出来
+            console.log(key);
+        }
+    }
+    
+    var obj = {id: 1};
+//    console.log(obj);
+    for(var k in obj) {
+       if(obj.hasOwnProperty(k)) {
+           console.log(k);
+       }
+    }
+
+    // 验证是不是公有属性
+    function hasPubProperty(obj, attr) { // hasPubProperty return Boolean true公有 false 不是公有
+//        if(attr in obj){
+//            return !obj.hasOwnProperty(attr);
+//        }
+        return (attr in obj) && !obj.hasOwnProperty(attr);
+    }
+//    console.log(tab1.hasOwnProperty('name')); // true
+//    console.log(hasPubProperty(tab1, 'name')); // false
+//
+//    console.log(tab1.hasOwnProperty('pub')); // false
+//    console.log(hasPubProperty(tab1, 'pub')); // true
+
+    Tab.prototype.pub = '这是Tab的公有属性';
+    console.log(tab1.pub); // 根据原型链查找机制 先找私有 -> 公有 -> Object.prototype
+    console.log(tab1.__proto__ === Tab.prototype);
+    console.log(tab1.__proto__.pub); // 直接找的是Tab.prototype
+
+</script>
+</body>
+</html>

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="oDiv"></div>
+<li id="lis"></li>
+<script type="text/javascript">
+    // 元素对象原型链
+    var oDiv = document.getElementById('oDiv');
+    console.dir(oDiv);
+    var oDivs = document.getElementsByTagName('div');
+    console.log(oDivs);
+    var lis = document.getElementById('lis');
+    console.dir(lis);
+
+    //  div -> HTMLDivElement -> HTMLElement -> Element -> Node -> EventTarget -> Object
+
+    // 元素集合 -> HTMLCollection -> Object
+
+    // 1.别名
+    function Tab() {
+
+    }
+    //    var pubs = Tab.prototype;
+    //    pubs.pub = '原型上公有的属性';
+    //    pubs.pub1 = '原型上公有的属性';
+    //    pubs.pub2 = '原型上公有的属性';
+    //    pubs.pub3 = '原型上公有的属性';
+
+    //    Tab.prototype.say = '这是浏览器默认创建的原型对象';
+    //    var tab1 = new Tab;
+    //    console.log(tab1);
+
+
+    // 2.批量设置（原型对象重构）
+    Tab.prototype = {
+        constructor: Tab, // 注意如果不写的话 找的是 Object的原型上的 constructor
+        id: 1,
+        name: 'zhufeng',
+        say: function () {
+            console.log('zhufeng');
+        }
+    };
+
+    var tab2 = new Tab(); // 只有重构之后创建的实例 的__proto__才会指向这个重构原型对象
+    console.log(tab2);
+    var tab3 = new Tab();
+    //  console.log(tab1.__proto__ === tab2.__proto__); // false 虽然都是Tab的实例 由于一个是 重构原型对象之前创建tab1 一个是重构之后创建tab2 所以导致指向的不是同一个原型对象
+
+    // console.log(tab1.name);
+    // console.log(Tab.prototype);
+    // 注意 只有在浏览器默认为原型开辟的内存空间才存在constructor 我们在原型对象重构的时候 是将默认的prototype给替换掉了, 不要忘了 手工指定constructor(构造函数)
+    // console.log(tab1.constructor);
+
+
+    // 找到的都是Tab这个类的原型上的公有属性say
+    //    console.log(Tab.prototype.say); // 通过类的原型查找
+    //    console.log(tab2.say); // 通过原型链查找
+    //    console.log(tab2.__proto__.say); // 直接找的是原型上的
+    //
+    //    console.log(tab2.say === Tab.prototype.say); // true
+    //    console.log(tab2.__proto__.say === Tab.prototype.say); // true
+
+    // 找到原型上属性方法 将其修改掉
+    //    Tab.prototype.id = 100;
+
+    // 实例通过__proto__修改所属类原型上的属性和方法
+    //    tab2.__proto__.name = 'liwenli'; // 只要有一个实例通过__proto__将原型上的属性修改了 其他 当前这个类的实例 也会受到影响
+    //    console.log(Tab.prototype.name);
+    //    console.log(tab2.name);
+    //    console.log(tab3.name);
+
+    // 在 IE浏览器中__proto__被禁用了，因为它不允许你通过__proto__进行修改原型
+
+    //    var arr = [];
+    //
+    //    console.log(arr instanceof Array);
+    //    console.log(arr);
+    //    console.log(String.prototype);
+
+    var arr = [1, 2, 3];
+    //    console.log(arr.__proto__ === Array.prototype);
+    // 将内置类上原型属性 修改
+    //    arr.__proto__.slice = function () { // IE不兼容
+    //        return 'hello nihao'
+    //    };
+
+
+    //    Array.prototype = { // 浏览器不允许 重构内置类的原型对象 重构会导致原有内置类的原型上 所有属性和方法 被 替换掉 这样 很不安全 所以被屏蔽了
+    //        slice: function () {
+    //            return 'zhufeng'
+    //        }
+    //    };
+
+    // 可以通过 类 单独修改和添加
+    //    Array.prototype.slice = function () {
+    //        return 'hello zhufeng'
+    //    };
+
+    // 如果在内置类 添加属性时 需要注意命名 一般 加个前缀 防止将原有的覆盖掉
+    //    Array.prototype.mySlice = function () {
+    //
+    //    };
+
+    // 自己在Array这个类的原型上添加 数组求和方法 供数组实例来使用
+    Array.prototype.myAdd = function () {
+//        console.log(this);
+//        console.log(this.join('+'));
+        return eval(this.join('+'));
+    };
+    console.log([10, 20, 30].myAdd());
+    console.log([110, 20, 33].myAdd());
+
+</script>
+</body>
+</html>
