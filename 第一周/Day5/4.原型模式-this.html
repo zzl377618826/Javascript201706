@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    //    function Fn() {
+    //        console.log(this); // 类中this代表当前实例
+    ////        this.name = 'zhufeng';
+    //        this.say = function () {
+    //            console.log(this.name); // 方法中this '.'前面是谁就是谁, 否则就是window
+    //        }
+    //    }
+    //    Fn.prototype = {
+    //        constructor: Fn,
+    ////        name: 'prototype',
+    //        num: 300,
+    //        say: function () {
+    //            console.log(this.name);
+    //        }
+    //    };
+    //   Object.prototype.name = 'Object';
+    //    var fn = new Fn;
+    //    fn.say();
+    //    console.log(fn.__proto__ === Fn.prototype); // true
+    //    fn.__proto__.say(); // fn.__proto__ => Fn.prototype => this = Fn.prototype
+    //    Fn.prototype.say(); // Fn的原型
+
+    //    console.log(Fn.prototype);
+    //    Fn.prototype.say();
+
+    //    var obj = {name: 'obj'};
+    //    obj.say = fn.say;
+    //    obj.say();
+
+    //    console.log(Fn.prototype.hasOwnProperty('num')); // 检测属性是不是当前这个对象的私有属性
+    //    console.log(fn.hasOwnProperty('num'));
+
+
+    var arr = [1, 2, 3, 4, 5];
+
+    // arr.__proto__.Array.prototype.__proto__.Object.prototype
+
+    console.log(arr instanceof Array); // true
+    console.log(arr instanceof Object); // true
+
+    console.log(arr.slice(2).reverse().splice().push(100));
+
+    // 如果想实现连缀最直接就 是 return this 将原数组返回
+    //Array.prototype.myAdd = function (a) {
+    //    this[this.length] = a;
+    //    return this;
+    //};
+    // var ary = [1,1,1,3,3,3,2,2,2,6,6,6];
+    // console.log(ary.myAdd(1000) === ary); // true
+    // console.log(ary.myAdd(1000).reverse());
+
+    // 一、返回新数组实现连缀
+    //    Array.prototype.unique =function () {
+    //        var obj = {};
+    //        var arr = [];
+    //        for (var i = 0; i < this.length; i++) {
+    //            obj[this[i]] = this[i];
+    //        }
+    //
+    //        for(var k in obj) {
+    //            arr.push(obj[k]);
+    //        }
+    //        return arr;
+    //    };
+    //    var ary = [1,1,1,3,3,3,2,2,2,6,6,6, 'liwenli', 'liwenli'];
+    //   console.log(ary.unique().reverse());
+    //   console.log(ary.unique() === ary);
+
+    // 二、返回原数组 return this 实现连缀
+    Array.prototype.unique = function () {
+        var obj = {};
+        for (var i = 0; i < this.length; i++) {
+            obj[this[i]] = this[i];
+        }
+        this.splice(0);
+        console.log(this);
+        for (var k in obj) {
+            this.push(obj[k]);
+        }
+        return this;
+
+    };
+    var ary = [1, 1, 1, 3, 3, 3, 2, 2, 2, 6, 6, 6, 'liwenli', 'liwenli'];
+    // console.log(ary.unique() === ary); // true
+    console.log(ary.unique().reverse() === ary);
+
+
+    Array.prototype.getParam = function (n, c) {
+        console.log(n, c);
+    };
+    [10, 20].getParam(100, 200);
+
+    // 作业 写一个自己的 slice方法
+    //    Array.prototype.mySlice = function () {
+    //
+    //    };
+    //
+    //    [1,2,3].slice();
+    //    [1,2,3].mySlice(1,2);
+
+    // 加减连缀
+
+    //    Number.prototype.add = function (n) {
+    //        return this + n;
+    //    };
+    //
+    //    Number.prototype.minus = function (n) {
+    //        return this - n;
+    //    };
+    //
+    //    console.log((15).add(20).minus(15)); // 20
+    //    console.log((15).minus(15)); // 20
+
+    // 基本数据类型面向对象特殊性
+    //    var n = 10; // 字面量方式 基本数据类型值
+    //    console.log(n);
+    //    console.log(typeof n);
+    //    var m = new Number(20); // 实例化创建 方式 返回的 对象数据类型
+    //    console.log(m);
+    //    console.log(m + 5);
+    //    console.log(n instanceof Number); // false
+    //    console.log(m instanceof Number); // true
+
+
+    // isProtoTypeOf  propertyIsEnumerable
+
+    var ary = [100];
+    // ary.__proto__.Array.prototype.__proto__.Object.prototype
+
+    // 检测指定对象Array.prototype 是否出现在 ary这个实例的原型链中
+    //    console.log(Array.prototype.isPrototypeOf(ary)); // true
+    //    console.log(Object.prototype.isPrototypeOf(ary)); // true
+    //    console.log(Number.prototype.isPrototypeOf(ary)); // false
+
+    // propertyIsEnumerable 是否是可枚举属性 不包含原型链中属性 (可枚举自身属性)
+
+    function Per() {
+        this.aa = 'aa'
+    }
+    Per.prototype.n = 1000;
+
+    var per1 = new Per;
+    for (var k in per1) {
+        console.log(per1.propertyIsEnumerable(k));
+        if (per1.propertyIsEnumerable(k)) {
+            console.log(k);
+        }
+    }
+    var e = [1];
+
+    // 检测可以 枚举的 私有属性
+    console.log(e.propertyIsEnumerable('length')); // false
+
+    // 只用来检测 是不是 私有属性  它不管可不可以枚举
+    console.log(e.hasOwnProperty('length')); // 私有属性
+
+    // getPrototypeOf 这是Object的私有属性方法
+    console.log(Object.getPrototypeOf(per1)); // 返回当前指定对象 所属类的原型
+
+    console.log(Object.getPrototypeOf(per1) === Per.prototype); // 原型
+
+    console.log(Object.getPrototypeOf({}) === Object.prototype); // true
+</script>
+</body>
+</html>
