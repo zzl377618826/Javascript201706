@@ -9,7 +9,7 @@ var utils = (function () {
      */
     function listToAry(likeAry) {
         try {
-            return [].slice.call(likeAry);
+            return [].slice.call(likeAry, 0);
         }catch (e) {
             var arr = [];
             for(var i = 0; i < likeAry.length; i++){
