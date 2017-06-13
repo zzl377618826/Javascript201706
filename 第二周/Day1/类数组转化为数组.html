@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul>
+    <li>11</li>
+    <li>22</li>
+    <li>33</li>
+    <li>44</li>
+    <li>55</li>
+    <li>66</li>
+</ul>
+<!-- 引入依赖 -->
+<script type="text/javascript" src="utils.js"></script>
+<script type="text/javascript">
+    var lis = document.getElementsByTagName('li');
+    var lisAry = utils.listToAry(lis);
+    console.log(lisAry);
+
+    // 求平均分
+    function Average() {
+        // 1.将类数组转化为数组
+         var arr = utils.listToAry(arguments);
+
+        // 2.先排序 再去掉最大值和最小值
+        arr.sort(function (a, b) {
+            return a - b
+        });
+        arr.shift();
+        arr.pop();
+
+        // 3.求和 然后求平均分 再保留两位小数
+        var argv = (eval(arr.join('+')) / arr.length).toFixed(2);
+        return argv;
+    }
+    var argv = Average(11, 1, 34, 10, 12, 25);
+    console.log(argv);
+</script>
+</body>
+</html>

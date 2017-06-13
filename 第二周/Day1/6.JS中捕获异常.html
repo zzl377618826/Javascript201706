@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    //如果当前代码报错 在不进行任何处理的情况下 后面代码不会执行
+    //    undefined();
+    //    console.log(13123);
+
+    try {
+        console.log('第一种方案');
+        undefined();
+    } catch (e) { // catch参数必须要传 e 用来捕获报错完整信息（标注了报错位置） e.message报错的原因信息
+        console.log(e);
+        console.log(e.message);
+        console.log('第二种方案');
+    } finally {
+        console.log('不管报不报错都会执行');
+    }
+    console.log('后面代码照常执行');
+
+    //    console.log(en); // ReferenceError
+    //    undefined(); // TypeError
+
+    // 手工抛出错误 throw抛出
+    //    throw new Error('你人品不行');
+    //    throw new ReferenceError('你人品不行'); // 引用错误
+    //    throw new TypeError('en is not defined'); // 类型错误
+    //    throw new RangeError('你好 '); // 范围错误
+
+</script>
+</body>
+</html>
