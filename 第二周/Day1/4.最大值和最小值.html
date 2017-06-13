@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    //    var arr = [12,10,9,40,14,11];
+    //    1.先排序 掐头去尾
+    //    arr.sort(function (a ,b) {
+    //        return a - b;
+    //    });
+    //    var min = arr[0];
+    //    var max = arr[arr.length-1];
+    //    console.log(min, max);
+
+    //    2.假设法
+    //      var min = arr[0];
+    //      var max = arr[0];
+    //      for(var i = 1; i < arr.length; i++) {
+    //          var cur = arr[i];
+    //          cur < min ? min = cur : null;
+    //          cur > max ? max = cur : null;
+    //      }
+    //      console.log(min);
+    //      console.log(max);
+
+    //    3. eval转换成js表达式
+    var arr = [12, 10, 9, 40, 14, 11];
+    //    // eval("Math.min(12,10,9,40,14,11)")
+    //    console.log(eval('Math.min(' + arr.join() + ')'));
+    //    console.log(eval('Math.max(' + arr.join() + ')'));
+    //    console.log(eval("Math.min(12,10,9,40,14,11)"));
+    //
+    //    // eval("12+10+9+40+14+11")
+    //    console.log(eval(arr.join('+')));
+
+    //    4.apply 利用apply传参的时候 以数组形式 并且形参赋值的时候 其实 也相当于一个一个 与形参对应赋值
+    //    Math.min.apply(null, [12, 10, 9, 40, 14, 11]);
+    //    console.log(Math.min.apply(null, arr));
+    //    console.log(Math.max.apply(null, arr));
+
+    // eval 将字符串代码转化为js表达式运行
+    //    console.log(eval("10+20+47"));
+    //    var name = "zhufeng";
+    //    console.log(eval("name"));
+    //    console.log("name");
+    //    function fn() {
+    //        console.log('fn');
+    //    }
+    //    eval("fn()")
+
+    // 括号表达式() 如果里面用了 ","操作符 得到的都是最后一项
+    //    (1,2,4) // 4
+
+    (function () {
+        console.log(123);
+    }, function () {
+        console.log(456);
+    })();
+
+    (function () {
+        console.log(123);
+    })();
+
+
+
+
+</script>
+</body>
+</html>
