@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script>
+    var num = 0; // 200
+    function Fn(num) { // num = 0
+        arguments[0] = 100; // num = 100
+        this.num = 200; // window.num = 200
+        console.log(num); // 100
+        console.log(this.num); // 200
+        return num; // return 100
+    }
+    Fn.num = 400;
+    Fn.prototype.num = 300;
+    Fn.prototype.getNum = function () {
+        console.log(this.num);
+    };
+    var f = new Fn(num); // 作为一个类 执行  100 200  {num: 200}
+    console.log(f.num); // 200
+    f.getNum(); // 200
+    Fn.prototype.getNum();  // 300
+    console.log(num); // 0
+
+    var n = Fn(num); // 作为一个普通函数执行 100 200 n = 100
+    console.log(n); // 100
+    console.log(num); // 200
+</script>
+</body>
+</html>

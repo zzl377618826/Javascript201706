@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    //        'use strict'
+
+    // call apply bind 存在于Function.prototype上的属性方法
+    //    console.dir(Function);
+    //
+    //    function Fn() {}
+    //    console.log(Fn.call === Function.prototype.call);
+
+    // call改变this关键字 
+    //    var name = 'react';
+    //    var obj = {name: 'zhufeng', fn: fe};
+    //    function fe(n) {
+    //        console.log(this);
+    ////       console.log(this.name);
+    ////       console.log(n);
+    //    }
+    // fe(); 
+    // fe.call() 通过原型链模式 查找到Function原型上的call方法 让call方法执行
+    // fe.call(obj, '参数1'); // call方法执行：让fe执行 并且里面this修改为 call中第一个参数obj,传递参数：从call方法第二个参数开始 才是给fe传参
+
+    // fe.call(obj); 首先call方法执行：让call的this(fe)执行 并且将(fe)里面的this修改为call方法的第一个参数(obj)
+
+    // 严格模式和非严格模式
+    // 1.非严格模式下 call方法中第一个参数不传 或者传的是 null 和 undefined，this关键字都会被修改为 window
+    // 2.严格模式下 call方法中第一个参数 不传 this关键字就是 undefined，其它的第一个参数是啥this关键字就是啥 如果是null this关键字就是null 如果是undefined this关键字就是undefined
+    //    fe.call();
+    //    fe.call(null);
+    //    fe.call(undefined);
+    //  obj.fn.call(); // 将obj.fn中this关键字修改为window
+
+    // apply 修改this关键字
+    //    var name = 'vue';
+    //    var obj = {name: 'zhufeng'};
+    //    function fe(n, m) {
+    //        console.log(n, m);
+    //        console.log(this);
+    ////        console.log(this.name);
+    //    }
+    //    //    fe();
+    //    fe.call(null, 10, 20); // 从第二个参数开始一个一个传 n=10 m=20
+    //    fe.apply(null, [100, 200]); // 把要传的参数先放到一个数组集合里 相当于放到arguments中 , 然后在形参赋值的时候 也是 一个一个的赋值 n=100 m=200
+
+    // call 和 apply的区别 传参
+
+
+    // bind 也是修改this关键字 兼容性 将this被改造后的函数返回到外面 不会让它立即执行 并且传参 也是 从第二个参数开始 一个一个传
+
+    //    var name = 'hello world';
+    //    var obj = {name: 'zhufeng'};
+    //    function fe(n, m) {
+    //        console.log(n, m);
+    //        console.log(this);
+    //    }
+
+    //    var fo = fe.bind(obj); // 将fo是通过bind将fe里this修改为 bind里第一个参数 改造后的函数  注意bind不会让bind的this立即执行
+    // fo是通过bind 将this改造后的函数 里面this被修改为了 obj
+    //    var fo = fe.bind();
+    //    var fo = fe.bind(null, 100, 200);
+    //    var fo = fe.bind(undefined);
+    //    fo();
+
+    function fn1() {
+        console.log('fn1');
+    }
+
+    function fn2() {
+        console.log('fn2');
+    }
+
+    fn1.call(fn2);
+    fn1.call.call(fn2);
+    fn1.call.call.call.call(fn2);
+</script>
+</body>
+</html>

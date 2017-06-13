@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    /**
+     * 函数多面性
+     * 1.所有的对象数据类型（普通对象 实例 原型 函数 数组 正则 Date...）, 都是Object这个基类的实例
+     *2.所有的函数数据类型（普通函数 类：自定义类 内置类）都是Function这个类的一个实例
+     * 3.实例都是对象数据类型的，所有的函数数据类型都是Function这个类一个实例， 所以所有函数数据类型又都是对象数据类型的值
+     */
+//    function Fn() {}
+//    console.dir(Fn);
+//    function Fn1() {}
+//    console.dir(Fn1);
+
+    // 函数的三种角色
+    // 1.作为一个普通函数
+    // 函数执行：形成私有作用域 -> 形参赋值/预解释 -> 代码从上到下执行
+    // 2.作为一个类
+    // 存在 prototype（原型模式）和 __proto__ （原型链模式）的概念
+    // 3.作为一个普通对象
+    // 像{}一样可以给自身添加私有属性
+//    function Fn(n,m) {
+//        var num = 100; // 形成一个私有变量
+//        this.x = this.y = n; // 作为一个类给实例添加私有属性
+//    }
+////    Fn(20); // 作为一个普通函数执行
+//    Fn.prototype.say = 'Hello world!'; // 作为一个类给实例添加公有属性
+////    Fn.m = 300; // 作为一个普通对象 给Fn自身添加属性
+//    new Fn(30); // 作为一个类执行
+//
+//    console.dir(Fn);
+
+
+//    Function.prototype.m = 600;
+//    Object.prototype.m = 1600;
+//    console.log(Fn.m);
+
+//    var obj = {};
+//    obj.m = 500;
+
+    // callee和caller
+
+//    function Fe() {
+//     console.log(Fe.caller); // 当前函数在哪个函数里执行 就代表哪个函数
+//     console.log(arguments.callee); // 代表当前函数本身
+//    }
+//
+////  Fe();
+////  console.dir(Fe);
+//    function fn2() {
+//        Fe();
+//    }
+//    fn2();
+
+    //////////////////////////////////////////////////////////////
+//    测试
+
+//    var num = 0; // 200
+//    function Fn(num) { // num = 0
+//        arguments[0] = 100; // num = 100
+//        this.num = 200; // window.num = 200
+//        console.log(num); // 100
+//        console.log(this.num); // 200
+//        return num; // return 100
+//    }
+//    Fn.num = 400;
+//    Fn.prototype.num = 300;
+//    Fn.prototype.getNum = function () {
+//        console.log(this.num);
+//    };
+//    var f = new Fn(num); // 作为一个类 执行  100 200  {num: 200}
+//    console.log(f.num); // 200
+//    f.getNum(); // 200
+//    Fn.prototype.getNum();  // 300
+//    console.log(num); // 0
+//
+//    var n = Fn(num); // 作为一个普通函数执行 100 200 n = 100
+//    console.log(n); // 100
+//    console.log(num); // 200
+
+
+    function Fe() {
+        this.num = 300;
+    }
+    Fe.prototype.num = 600;
+    Fe.prototype.getNum = function () {
+        this.name = 'getNum的实例：fo';
+        console.log(this.num);
+    };
+    Function.prototype.num = 1000;
+    Fe.prototype.getNum.prototype.num = 5000;
+    Fe.getNum = function () {
+        console.log(this.num);
+    };
+    Fe.getNum.prototype.num = 110;
+    Fe.num = 2000;
+    var fe = new Fe;
+
+    Fe.getNum();
+    console.log(new Fe.getNum);
+
+//    fe.getNum(); // 300
+
+//    var fo = new Fe.prototype.getNum;
+//    console.log(fo);
+
+//    console.log(fo instanceof Fe); // false
+//    console.log(fo instanceof Fe.prototype.getNum); // true
+
+
+
+//    var obj = {fe: foo};
+//
+//    function foo() {
+//
+//    }
+//    var fee = new obj.fe;
+
+
+
+
+
+</script>
+</body>
+</html>

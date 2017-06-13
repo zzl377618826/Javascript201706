@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    // 所有的函数数据类型（普通函数 内置类 自定义类）都是 Function这个内置类的一个实例
+    // 实例都是对象数据类型的 ，所有对象数据类型都是Object这个基类的一个实例
+    // 所有的函数数据类型也是 对象数据类型的值
+    // 所有对象数据类型 都有一个__proto__属性
+
+
+    // Function 是一个内置类 类是函数数据类型 所有函数数据类型都是Function这个类的实例 所以 Function.__proto__ 指向 Function.prototype
+    // Function instanceof Function // true
+    // console.log(Function.__proto__ === Function.prototype); // true
+
+    // typeof Function.prototype  // 'function' (匿名函数)
+    
+    // Object 基类 也是函数数据类型的 所有函数数据类型都是Function这个内置类的一个实例， 所以 Object.__proto__ === Function.prototype
+
+    console.log(Object.__proto__ === Function.prototype); // true
+    
+    function Fn() {
+
+    }
+    console.dir(Fn);
+
+</script>
+</body>
+</html>
