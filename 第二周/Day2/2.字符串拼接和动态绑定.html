@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul id="oUl">
+    <li>11</li>
+    <li>22</li>
+    <li>33</li>
+
+</ul>
+<script type="text/javascript">
+    var oUl = document.getElementById('oUl');
+    var oLis = oUl.getElementsByTagName('li');
+    for(var i = 0; i< oLis.length; i++){
+        oLis[i].onclick = function () {
+            alert(this.innerText)
+        }
+    }
+
+    var arr = [44, 55, 66];
+    // 字符串拼接
+    // 1.字符串拼接是将拼接好的html字符串 一次性输出到页面
+    // 优点: 只引发一次回流
+    // 缺点: 影响原有的元素事件
+//        var str = '';
+//        for (var i = 0; i < arr.length; i++) {
+//            str += '<li>' + arr[i] + '</li>'
+//        }
+//        oUl.innerHTML += str;  // oUl.innerHTML =  oUl.innerHTML + str 只引发一次回流
+    // 首先获取到原有的html字符串 然后在和要添加的html字符串 重新拼接成新的 html字符串 然后 在输出到页面中，这样的话 就会重新渲染 导致原有元素被覆盖掉
+
+    // 动态创建
+    // 每创建一个元素就会往页面中 添加一次
+    // 优点：不会影响原有元素的事件
+    // 缺点：引发多次回流
+    for(var i = 0; i < arr.length; i++){
+        var li = document.createElement('li');
+        li.innerHTML = arr[i];
+//        debugger; // 断点
+        oUl.appendChild(li); // 引发多次回流
+    }
+
+    // DOM回流：当页面HTML结构发生改变的时候（增加 删除 移动），html结构就会重新计算一次 比较耗性能的 尽量避免直接操作DOM
+
+    // 重绘: 当页面中元素的部分样式（背景颜色 字体颜色...）改变时, 只会重新渲染这个元素的部分样式 针对于元素外观
+</script>
+</body>
+</html>

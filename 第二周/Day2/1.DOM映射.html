@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--<div id="oDiv"></div>-->
+<ul id="lis">
+    <li id="li1">11</li>
+    <li>22</li>
+    <li id="li3">33</li>
+</ul>
+<script type="text/javascript">
+    // DOM映射：html页面中元素和在JS中通过 DOM方法获取的元素对象，是一一对应的 一个改变了另一个也会改变
+
+    var oLis = document.getElementById('lis');
+    var oList = oLis.getElementsByTagName('li');
+    var li1 = document.getElementById('li1');
+    var li2 = document.getElementById('li2');
+    li1.style.backgroundColor = 'red';
+    console.log(oList);
+    var arr = [];
+    //    var oDiv = document.getElementById('oDiv');
+    //    console.dir(oDiv);
+    //    oDiv.style.width = '100px';
+    //    oDiv.style.height = '100px';
+    //    oDiv.style.backgroundColor = 'red';
+
+    //    setTimeout(function () {
+    //       var li = document.createElement('li');
+    //       li.innerHTML = '666';
+    //       oLis.appendChild(li); // 添加后不需要重新获取元素集合
+    //       console.log(oList); // HTMLCollection 元素集合 即时更新 当内部结构改变的时候 会自动更新同步
+    //    }, 3000);
+
+    //    setTimeout(function () {
+    //       oLis.appendChild(li1); // 移动节点
+    //       oLis.insertBefore(li3, li2);
+    //    }, 2000);
+
+
+</script>
+</body>
+</html>

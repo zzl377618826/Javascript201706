@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul id="oUl">
+  <li>11</li>
+  <li>22</li>
+  <li>33</li>
+</ul>
+<script type="text/javascript">
+    var oUl = document.getElementById('oUl');
+    var oLis = document.getElementsByTagName('li');
+    for(var j = 0; j < oLis.length; j++){
+        oLis[j].onclick = function () {
+            alert(this.innerHTML)
+        }
+    }
+
+    // 解决动态创建 引发多次回流
+    var arr = [44,55];
+    // 文档碎片 解决动态绑定引发多次回流
+    var frg = document.createDocumentFragment(); // 创建文档碎片
+
+    for(var i = 0; i < arr.length; i++) {
+        var li = document.createElement('li');
+        var o = document.createElement('i');
+        o.innerHTML = arr[i];
+        li.appendChild(o);
+        frg.appendChild(li); // 将每一次创建的li 先添加到文档碎片中
+    }
+
+    oUl.appendChild(frg); // 将文档碎片中的内容一次性添加到oUl中
+    console.log(typeof frg);
+    frg = null;
+</script>
+</body>
+</html>
