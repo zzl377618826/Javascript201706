@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="pop">人气</button>
+<button id="pin">名字</button>
+<ul id="oUl">
+    <li pop="3900" pin="wangyi">
+        <h3>网易</h3>
+        <span>人气：3900</span>
+    </li>
+    <li pop="40800" pin="tengxun">
+        <h3>腾讯</h3>
+        <span>人气：40800</span>
+    </li>
+    <li pop="30200" pin="baidu">
+        <h3>百度</h3>
+        <span>人气：30200</span>
+
+    </li>
+    <li pop="50200" pin="ali">
+        <h3>阿里</h3>
+        <span>人气：50200</span>
+    </li>
+    <li pop="10020" pin="sougou">
+        <h3>搜狗</h3>
+        <span>人气：10020</span>
+    </li>
+</ul>
+<script type="text/javascript">
+  var oUl = document.getElementById('oUl');
+  var pop = document.getElementById('pop');
+  var pin = document.getElementById('pin');
+  var oLis = document.getElementsByTagName('li');
+  
+  // 将类数组转化为数组
+  var oliArr = [].slice.call(oLis);
+
+  oUl.flag = -1;
+  pop.onclick = pin.onclick = function () {
+      var cname = this.id; // 作为每个元素获取html属性值 属性名
+      console.log(cname);
+      oUl.flag *= -1;
+      oliArr.sort(function (a, b) {
+          var p1 =a.getAttribute(cname); // 获取到元素自身保存相应html属性值 作为排序依据
+          var p2 =b.getAttribute(cname);
+          if(isNaN(p1)){
+              return (p1.localeCompare(p2))*oUl.flag; // 如果不是有效数字按 拼音排序
+          }
+          return (p1 - p2)*oUl.flag; // 按数字排序
+
+      });
+
+      var frg = document.createDocumentFragment();
+      for(var i = 0; i < oliArr.length; i++) {
+          frg.appendChild(oliArr[i]);
+      }
+      oUl.appendChild(frg);
+  }
+</script>
+</body>
+</html>
