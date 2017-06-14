@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button>价格</button>
+<button>拼音</button>
+<ul id="oUl">
+    <!--<li>33</li>-->
+    <!--<li>11</li>-->
+    <!--<li>55</li>-->
+    <!--<li>44</li>-->
+    <!--<li>22</li>-->
+    <!--<li ind="zhoujielun">周杰伦</li>-->
+    <!--<li ind="lisi">李四</li>-->
+    <!--<li ind="baidu">百度</li>-->
+    <!--<li ind="ali">阿里</li>-->
+    <!--<li ind="tengxun">腾讯</li>-->
+    <li ind="55" pid="zhoujielun">
+        周杰伦
+        <p><span>￥55</span></p>
+    </li>
+    <li ind="22" pid="zhoujielun">李四
+        <p><span>￥22</span></p>
+    </li>
+    <li ind="33" pid="zhoujielun">百度
+        <p><span>￥33</span></p>
+    </li>
+    <li ind="11" pid="zhoujielun">阿里
+        <p><span>￥11</span></p>
+    </li>
+    <li ind="44" pid="zhoujielun">腾讯
+        <p><span>￥44</span></p>
+    </li>
+</ul>
+<script type="text/javascript">
+    var oUl = document.getElementById('oUl');
+    var oLis = document.getElementsByTagName('li');
+
+    //    var oliArr = [].slice.call(oLis);
+    //    console.log(oliArr);
+    //    // 将li元素根据元素内容在集合中排好序
+    //    oliArr.sort(function (a, b) {
+    ////        console.log(a);
+    ////        console.log(b);
+    //       return b.innerHTML - a.innerHTML; // sort只关心每一次return的是大于0还是小于等于0的数 如果是大于0 就让此时a和b交换位置 否则不会进行交换
+    //    });
+    //    console.log(oliArr);
+    //
+    //    // 让页面按照集合中排好序的位置来移动节点
+    //    setTimeout(function () {
+    //        for(var i = 0; i < oliArr.length; i++){
+    //            oliArr[i].style.backgroundColor = 'red';
+    ////            debugger;
+    //            oUl.appendChild(oliArr[i]);
+    //        }
+    //    },2000);
+
+
+    // 将类数组转化为数组
+    var liArr = [].slice.call(oLis);
+    console.log(liArr);
+
+    // 进行排序
+    //    liArr.sort(function (a, b) {
+    //        return a.innerHTML - b.innerHTML
+    //    });
+
+    // 字符串排序
+    //    'a'.localeCompare('c')
+    //    -1 a的位置 在 c的前面 所以 a小于c
+    //    'd'.localeCompare('c')
+    //    1
+    //    'c'.localeCompare('c')
+    //    0
+    liArr.sort(function (a, b) {
+        var p1 = a.getAttribute('ind');
+        var p2 = b.getAttribute('ind');
+        return p1.localeCompare(p2);
+    });
+
+    // 按照排好的顺序  移动节点
+    setTimeout(function () {
+        var frg = document.createDocumentFragment();
+        for (var i = 0; i < liArr.length; i++) {
+            frg.appendChild(liArr[i])
+        }
+        oUl.appendChild(frg);
+    }, 2000);
+
+    // 从小到大排好序的集合
+    console.log(liArr);
+    //
+    //    setTimeout(function () {
+    //        oUl.appendChild(liArr[0]);
+    //    },1000);
+    //
+    //    setTimeout(function () {
+    //        oUl.appendChild(liArr[1]);
+    //    },2000);
+    //
+    //    setTimeout(function () {
+    //        oUl.appendChild(liArr[2]);
+    //    },3000);
+    //
+    //    setTimeout(function () {
+    //        oUl.appendChild(liArr[3]);
+    //    },4000);
+    //
+    //    setTimeout(function () {
+    //        oUl.appendChild(liArr[4]);
+    //    },5000);
+</script>
+</body>
+</html>

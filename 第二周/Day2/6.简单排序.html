@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        ul {
+            list-style: none;
+            overflow: hidden;
+        }
+        ul li {
+            float: left;
+            margin: 10px;
+            border: 1px solid black;
+        }
+        ul li img {
+            width: 100px;
+            height: 100px;
+        }
+        button {
+            width: 60px;
+            height: 30px;
+            margin-left: 50px;
+            text-align: center;
+            line-height: 30px;
+        }
+    </style>
+</head>
+<body>
+<button id="price">价格</button><button id="pin">拼音</button>
+<ul id="oUl">
+
+    <li price="55" pin="zhoujielun">
+        <img src="https://y.gtimg.cn/music/photo_new/T001R300x300M0000025NhlN2yWrP4.jpg?max_age=2592000" alt="">
+
+    <p><span>￥55</span></p>
+    </li>
+    <li price="33" pin="baidu">
+    <img src="https://ss0.baidu.com/6ONWsjip0QIZ8tyhnq/it/u=2920084749,2018893236&fm=58&s=39C718720E8EBE011B398BAC0300F024&bpow=121&bpoh=75" alt="">
+        <p><span>￥33</span></p>
+    </li>
+    <li price="11" pin="ali">
+        <img src="https://ss2.baidu.com/6ONYsjip0QIZ8tyhnq/it/u=2072424194,2522707212&fm=58" alt="">
+        <p><span>￥11</span></p>
+    </li>
+    <li price="44" pin="tengxun">
+        <img src="https://ss1.baidu.com/6ONXsjip0QIZ8tyhnq/it/u=2974200706,2960815988&fm=58" alt="">
+        <p><span>￥44</span></p>
+    </li>
+</ul>
+<script type="text/javascript">
+    var oUl = document.getElementById('oUl');
+    var price = document.getElementById('price');
+    var pin = document.getElementById('pin');
+    var oLis = document.getElementsByTagName('li');
+
+    price.onclick = pin.onclick = mySort;
+    
+    // 将类数组转化为数组
+    var liArr = [].slice.call(oLis);
+    oUl.flag = -1;
+    function mySort() {
+        oUl.flag *= -1;
+        var cname = this.id;
+        console.log(cname);
+        liArr.sort(function (a, b) {
+            var p1 = a.getAttribute(cname);
+            var p2 = b.getAttribute(cname);
+            return (p1.localeCompare(p2)) * oUl.flag;
+        });
+
+        // 按照排好的顺序  移动节点
+        var frg = document.createDocumentFragment();
+        for(var i = 0; i < liArr.length; i++){
+            frg.appendChild(liArr[i])
+        }
+        oUl.appendChild(frg);
+    }
+       
+
+</script>
+</body>
+</html>
