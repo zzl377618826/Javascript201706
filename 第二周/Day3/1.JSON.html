@@ -12,79 +12,79 @@
 
     // JSON两种类型
     // JSON对象 类似js对象 但是 JSON对象书名必须用‘""’包起来，如果属性值也是字符串也必须要用‘""’ 包起来 也可以向普通对象一样 for in遍历 进行数据绑定
-//    var obj = {"name": "zhufeng", "id":1};
-//    var obj2 = {name: "zhufeng", id:1};
+    //    var obj = {"name": "zhufeng", "id":1};
+    //    var obj2 = {name: "zhufeng", id:1};
 
-//    var obj3 = [ // 二维数组
-//        {"name": "zhufeng", "id":1},
-//        {"name": "zhufeng", "id":1},
-//        {"name": "zhufeng", "id":1},
-//        {"name": "zhufeng", "id":1},
-//        {"name": "zhufeng", "id":1}
-//    ];
+    //    var obj3 = [ // 二维数组
+    //        {"name": "zhufeng", "id":1},
+    //        {"name": "zhufeng", "id":1},
+    //        {"name": "zhufeng", "id":1},
+    //        {"name": "zhufeng", "id":1},
+    //        {"name": "zhufeng", "id":1}
+    //    ];
 
-//    for(var k in obj) {
-//        console.log(k+' : '+ obj[k]);
-//    }
-    
+    //    for(var k in obj) {
+    //        console.log(k+' : '+ obj[k]);
+    //    }
+
     // JSON字符串
     var str = '{"name": "zhufeng", "id":1}';
-    
-    
+
+
     // JSON转换
     // JSON属性 是window提供的一个全局属性 供我们进行JSON格式转换 IE7以下不兼容
     // 1.JSON.parse 将JSON字符串转换为JSON对象
-//    var jsonObj = JSON.parse('{"name": "zhufeng", "id":1}');
-//    console.log(jsonObj);
+    //    var jsonObj = JSON.parse('{"name": "zhufeng", "id":1}');
+    //    console.log(jsonObj);
 
     // 2.JSON.stringify 将普通对象/JSON对象转化为 JSON字符串
-//    var obj2 = {name: "zhufeng", id:1};
-//    var strObj = JSON.stringify(obj2);
-//    console.log(typeof strObj);
-//    console.log(strObj);
-//    console.log(JSON.parse(strObj));
-//
-//    var obj = {"name": "zhufeng", "id":1};
-//    var strObj2 = JSON.stringify(obj);
-//    console.log(typeof strObj2);
-//    console.log(strObj2);
+    //    var obj2 = {name: "zhufeng", id:1};
+    //    var strObj = JSON.stringify(obj2);
+    //    console.log(typeof strObj);
+    //    console.log(strObj);
+    //    console.log(JSON.parse(strObj));
+    //
+    //    var obj = {"name": "zhufeng", "id":1};
+    //    var strObj2 = JSON.stringify(obj);
+    //    console.log(typeof strObj2);
+    //    console.log(strObj2);
 
 
-//    var obj3 = [
-//        {"name": "liwenli", "id":1},
-//        {"name": "zhufeng222", "id":1},
-//        {"name": "zhufeng333", "id":22},
-//        {"name": "zhufeng444", "id":3},
-//        {"name": "javascript", "id":66}
-//    ];
-////    console.log(JSON.stringify(obj3));
-//    var oUl = document.getElementById('oUl');
-//    // 假设从后台请求到的 json字符串数据
-//    var jsonStr = JSON.stringify(obj3); // json字符串
-//    console.log(typeof jsonStr);
-//    console.log(jsonStr);
-//
-//    // 前端进行处理
-//    var jsonObj = JSON.parse(jsonStr); // 将json字符串转换为json对象
-//     var htmlStr = '';
-//     for(var i = 0; i < jsonObj.length; i++) { //jsonObj有多少项就循环多少次 拼接多少个li
-//         var cur = jsonObj[i]; // 遍历出来的每一条对象数据信息
-//         htmlStr += '<li>';
-//         for(var k in cur) { // 数据对象 有多少个属性就 拼接多少个span
-//             htmlStr +='<span>'+cur[k]+'</span> --'
-//         }
-//         htmlStr += '</li>';
-//     }
-//
-//     oUl.innerHTML = htmlStr
+    //    var obj3 = [
+    //        {"name": "liwenli", "id":1},
+    //        {"name": "zhufeng222", "id":1},
+    //        {"name": "zhufeng333", "id":22},
+    //        {"name": "zhufeng444", "id":3},
+    //        {"name": "javascript", "id":66}
+    //    ];
+    ////    console.log(JSON.stringify(obj3));
+    //    var oUl = document.getElementById('oUl');
+    //    // 假设从后台请求到的 json字符串数据
+    //    var jsonStr = JSON.stringify(obj3); // json字符串
+    //    console.log(typeof jsonStr);
+    //    console.log(jsonStr);
+    //
+    //    // 前端进行处理
+    //    var jsonObj = JSON.parse(jsonStr); // 将json字符串转换为json对象
+    //     var htmlStr = '';
+    //     for(var i = 0; i < jsonObj.length; i++) { //jsonObj有多少项就循环多少次 拼接多少个li
+    //         var cur = jsonObj[i]; // 遍历出来的每一条对象数据信息
+    //         htmlStr += '<li>';
+    //         for(var k in cur) { // 数据对象 有多少个属性就 拼接多少个span
+    //             htmlStr +='<span>'+cur[k]+'</span> --'
+    //         }
+    //         htmlStr += '</li>';
+    //     }
+    //
+    //     oUl.innerHTML = htmlStr
 
     var str6 = '{"name": "zhufeng", "id": 10}';
-//    console.log(JSON.parse(str6));
-//      console.log(eval('(' + str6 + ')')); // 兼容所有浏览器
-//    eval('({"name": "zhufeng", "id": 10})');
+    //    console.log(JSON.parse(str6));
+    //    console.log(eval('(' + str6 + ')')); // 兼容所有浏览器
+    //    eval('({"name": "zhufeng", "id": 10})');
 
     // json兼容性处理
-    var data = 'JSON' in window ? JSON.parse(str6) : eval('('+str6+')');
+    var data = 'JSON' in window ? JSON.parse(str6) : eval('(' + str6 + ')');
     console.log(data);
 
     var dataObj = utils.jsonParse(str6);

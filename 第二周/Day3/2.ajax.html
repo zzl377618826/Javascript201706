@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="btn">btn</button>
+<script type="text/javascript">
+    // ajax: Async Javascript And Xml
+    // ajax: 异步更新 用于前后端数据交互，实现页面局部刷新
+    
+    var data = null;
+    // 1.创建一个ajax对象
+    var xhr = new XMLHttpRequest();
+
+    //2.打开一个接口链接
+    //@param1 请求方式 get post
+    //@param2 请求地址 （接口地址） 通常是后台给我们的
+    //@param3 指定是否发送异步请求 默认异步 true（不会阻塞后面的代码）  false同步（必须要等ajax成功请求回来后才会执行后面代码）
+    xhr.open('get', './data.json', false);
+
+    //3.监听请求响应
+    xhr.onreadystatechange = function () {
+        // readyState ajax状态 0 1 2 3 4
+        // http status http状态 200 300 404
+        // 判断请求是否成功响应
+        if(this.readyState === 4 && this.status === 200) {
+            console.log(this.responseText); // 成功请求回来文本数据 json字符串格式
+//            console.log(typeof this.responseText);
+            data = this.responseText;
+
+        }
+    };
+
+    //4.发送ajax请求
+    xhr.send();
+    
+    console.log(data);
+    console.log('ajax后面的代码');
+</script>
+</body>
+</html>

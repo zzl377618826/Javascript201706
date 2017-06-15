@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="btn">获取数据</button>
+<ul id="oUl"></ul>
+<script type="text/javascript">
+    // 开始发送请求
+    btn.onclick = getData;
+
+    // 1.获取数据
+    function getData() {
+        // 1.创建一个ajax对象
+        var xhr = new XMLHttpRequest();
+
+        // 2.打开一个接口链接
+        xhr.open('get', './data.json', true);
+
+        // 3.监听请求响应
+        xhr.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+                console.log(this.responseText); // 请求成功返回的文本数据
+                var data = this.responseText;
+                // 将请求回来数据转化为json对象
+                data = "JSON" in window ? JSON.parse(data) : eval('(' + data + ')');
+                console.log(data);
+                bindData(data); // 将成功请求回来数据传递到bindData中
+            }
+        };
+
+        // 4.发送请求
+        xhr.send();
+    }
+
+    // 2.绑定数据
+    function bindData(data) {
+        console.log(data);
+        var str = '';
+        for (var i = 0; i < data.length; i++) { // 数组中有多少项就拼接多少个li
+            var cur = data[i];
+            str += '<li>';
+            for (var k in cur) { // 每一条对象有多少个属性 就拼接多少个span 并且将属性值 绑定到span中
+                str += '<span>' + cur[k] + '</span> --';
+            }
+            str += '</li>';
+        }
+        oUl.innerHTML = str;
+    }
+</script>
+</body>
+</html>
