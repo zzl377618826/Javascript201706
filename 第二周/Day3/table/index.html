@@ -24,12 +24,27 @@
             line-height: 30px;
         }
 
-        #tables tr th {
-              cursor: pointer;
+        #tables tr th.cursor {
+            cursor: pointer;
         }
 
         #tables thead {
             background-color: #84ffe2;
+        }
+
+        .bg0 {
+            background-color: #faabcd;
+        }
+
+        .bg1 {
+            background-color: #fad59f;
+        }
+
+        #tables tbody tr:hover {
+            background-color: #fa4339;
+            font-size: 22px;
+            color: #fff;
+            cursor: pointer;
         }
 
     </style>
@@ -38,10 +53,10 @@
 <table id="tables" border="1" cellspacing="0">
     <thead>
     <tr>
-        <th>name</th>
-        <th>age</th>
-        <th>sex</th>
-        <th>score</th>
+        <th class="cursor">name</th>
+        <th class="cursor">age</th>
+        <th >sex</th>
+        <th class="cursor">score</th>
     </tr>
     </thead>
 
@@ -58,7 +73,8 @@
     var tHead = tables.tHead; // 获取表头
     var tHeadRow = tHead.rows[0]; // 获取表头里的第一个tr
     var tHeadThs = tHeadRow.cells; // 获取表头里的所有th
-
+    tHeadThs[0].cn = 'pin'; // 要把所点击的th cn属性保存值 作为tr获取html属性的属性名
+    tHeadThs[2].cn = 'sex';
 
     // 1.获取初始数据
     function getData() {
@@ -89,7 +105,7 @@
         var str = '';
         for (var i = 0; i < data.length; i++) { // 数组中有多少个对象数据 就拼接多少个tr
             var cur = data[i];
-            str += '<tr pin=' + cur.pin + '>'; // 将属于每个tr的pin字段拼接到tr的html属性上
+            str += '<tr pin=' + cur.pin + ' sex='+cur.sex+'>'; // 将属于每个tr的pin字段拼接到tr的html属性上
 
             delete cur['pin']; // pin字段只作为排序来使用 不用来展示
             cur.sex = cur.sex ? '男' : '女'; // 处理男女
@@ -100,6 +116,7 @@
             str += '</tr>';
         }
         tBody.innerHTML = str;
+        changBg(); // 隔行变色
         bindEvent(); // 执行事件绑定
     }
 
@@ -110,9 +127,47 @@
         // 给每个th绑定点击事件
         for(var i = 0; i < tHeadThs.length; i++){
             var btn = tHeadThs[i];
+            if(btn.className !== 'cursor') continue;
+            btn.n = i;
+            btn.flag = -1; // 每一列升降序标识
             btn.onclick = function () {
-                console.log(arrRows);
+                var that = this;
+                for(var j = 0; j < tHeadThs.length; j++){
+                    if(tHeadThs[j] !== that){ // 只要不是当前点击的这一列 就让其他列flag标识为 初始值 -1
+                        tHeadThs[j].flag = -1;
+                    }
+                }
+                that.flag *= -1; // 每一次取反
+                arrRows.sort(function (a, b) {
+                    // a 和 b 代表的是当前的tr 和 下个tr
+                    // a.cells b.cells 没一个tr的所有td集合
+                    // 根据点击的th的索引 来找到 tr里对应那一列的td
+                    var p1 = a.cells[that.n].innerHTML;
+                    var p2 = b.cells[that.n].innerHTML;
+                    if(isNaN(p1)) { // 解决拼音和性别排序
+                        var p3 = a.getAttribute(that.cn).localeCompare(b.getAttribute(that.cn));
+                        return p3 * that.flag; // 升降序切换
+                    }
+                    return (p1 - p2) * that.flag; // 升降序切换
+                });
+
+
+                // 将排好序 展现在页面中
+                var frg = document.createDocumentFragment();
+                for(var k = 0; k < arrRows.length; k++){
+                    frg.appendChild(arrRows[k])
+                }
+                tBody.appendChild(frg);
+                changBg(); // 每次排序之后 重新计算一次隔行变色
             }
+        }
+    }
+
+
+    // 4.隔行变色
+    function changBg() {
+        for(var i = 0; i < tBodyRows.length; i++){
+            tBodyRows[i].className = 'bg' + i%2;
         }
     }
 </script>
