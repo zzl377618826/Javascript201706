@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #tables {
+            margin: 20px auto;
+            border-radius: 10px;
+            overflow: hidden;
+            padding: 10px;
+            -webkit-user-select: none;
+        }
+
+        #tables tr th, #tables tr td {
+            width: 100px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+        }
+
+        #tables tr th {
+              cursor: pointer;
+        }
+
+        #tables thead {
+            background-color: #84ffe2;
+        }
+
+    </style>
+</head>
+<body>
+<table id="tables" border="1" cellspacing="0">
+    <thead>
+    <tr>
+        <th>name</th>
+        <th>age</th>
+        <th>sex</th>
+        <th>score</th>
+    </tr>
+    </thead>
+
+    <tbody></tbody>
+</table>
+
+
+<script type="text/javascript">
+    // 获取操作元素
+    var tables = document.getElementById('tables');
+    var tBody = tables.tBodies[0]; // 获取表格中第一个tbody
+    var tBodyRows = tBody.rows; // 获取tbody里所有tr
+
+    var tHead = tables.tHead; // 获取表头
+    var tHeadRow = tHead.rows[0]; // 获取表头里的第一个tr
+    var tHeadThs = tHeadRow.cells; // 获取表头里的所有th
+
+
+    // 1.获取初始数据
+    function getData() {
+        // 1.创建ajax对象
+        var xhr = new XMLHttpRequest();
+        // 2.打开一个接口链接
+        xhr.open('get', './users.json');
+//        xhr.responseType = 'json'; // 指定返回的数据类型 json就会按json对象进行处理  必须要通过 this.response 才能得到数据
+        // 3.监听请求响应
+        xhr.onreadystatechange = function () {
+            if (this.readyState === 4 && this.status === 200) {
+                var data = this.responseText;
+//                console.log(this.response); // 配合 responseType来使用、
+                // 将数据转化为json对象
+                data = 'JSON' in window ? JSON.parse(data) : eval('(' + data + ')');
+                // 开始绑定数据
+                data.length ? bindData(data) : null; // 确保返回的不是空数据
+            }
+        };
+        // 4.发送请求
+        xhr.send();
+    }
+    // 请求数据
+    getData();
+
+    // 2.绑定数据
+    function bindData(data) {
+        var str = '';
+        for (var i = 0; i < data.length; i++) { // 数组中有多少个对象数据 就拼接多少个tr
+            var cur = data[i];
+            str += '<tr pin=' + cur.pin + '>'; // 将属于每个tr的pin字段拼接到tr的html属性上
+
+            delete cur['pin']; // pin字段只作为排序来使用 不用来展示
+            cur.sex = cur.sex ? '男' : '女'; // 处理男女
+
+            for (var k in cur) { // 对象中有多少个 属性（不包括pin这个属性）就拼接多少个td
+                str += '<td>' + cur[k] + '</td>'
+            }
+            str += '</tr>';
+        }
+        tBody.innerHTML = str;
+        bindEvent(); // 执行事件绑定
+    }
+
+    // 3.绑定事件
+    function bindEvent() {
+        // 将类数组（tr集合） 转化为 数组
+        var arrRows = [].slice.call(tBodyRows, 0);
+        // 给每个th绑定点击事件
+        for(var i = 0; i < tHeadThs.length; i++){
+            var btn = tHeadThs[i];
+            btn.onclick = function () {
+                console.log(arrRows);
+            }
+        }
+    }
+</script>
+</body>
+</html>
