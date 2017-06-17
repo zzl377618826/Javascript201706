@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    //    var obj;
+    //    function fn(obj, k) {
+    //       return (k in obj) && !obj.hasOwnProperty(k)
+    //    }
+
+//    var obj = {n: 10};
+//    console.log(total); // undefined
+//    obj.m = 5;
+//    total = (function (num1, num2) {
+//        console.log(total); // undefined
+//        total = num1 + num2;
+//        console.log(total); // 15
+//    })(obj.n, obj.m);
+//    var total = 0;
+//    console.log(total); // 0
+
+//    var num = 5; // 6 7
+//    var obj = {
+//        num : 4, // 5
+//        fn : (function (num){ // num = 2 3 4
+//            num++; // NaN
+//            this.num++;
+//            var num = 2;
+//            return function (){
+//                num++;
+//                this.num++;
+//                console.log(num);
+//            }
+//        })()
+//    };
+//    var fn = obj.fn;
+//    fn(); // 3
+//    obj.fn(); // 4
+//    console.log(this.num,obj.num); // 7 5
+
+//    function fn(n){
+//        function foo(){
+//            n += n;
+//            console.log(n);
+//        }
+//        return foo;
+//    }
+//    var f = fn(5); // n = 10; n = 20
+//    f(); // 10
+//    var f1 = fn(10); // n = 20
+//    f1(); // 20
+//    var f2 = fn(5);  //n = 10
+//    f2(); // 10
+//    f(); // 20
+
+
+//    function Fn() {
+//        this.a = 0;
+//        this.b = function() {
+//            console.log(this.a)
+//        }
+//    }
+//    Fn.prototype = {
+//        b: function() {
+//            this.a = 20;
+//            alert(this.a);
+//        },
+//        c: function() {
+//            this.a = 30;
+//            console.log(this.a);
+//        }
+//    };
+//    var obj = {a: 100};
+//    var myfn = new Fn(); // {a: 0, b: function}
+//    console.log(myfn.constructor); // Object
+//    myfn.b(); // 0
+//    obj.fn = myfn.c;
+//    obj.fn(); // 30
+
+
+//    function A() {}
+//    function B(a) { this.a = a;}
+//    function C(a) {
+//        if (a) {
+//            this.a = a;
+//        }
+//    }
+//    A.prototype.a = 1;
+//    B.prototype.a = 1;
+//    C.prototype.a = 1;
+//    console.log(new A().a); // 1
+//    console.log(new B().a); // undefined
+//    console.log(new C(2).a); // 2
+
+//    function Foo() {
+//        getName = function () {
+//            console.log(1);
+//        };
+//        return this;
+//    }
+//    Foo.getName = function () {
+//        console.log(2);
+//    };
+//    Foo.prototype.getName = function () {
+//        console.log(3);
+//    };
+//    var getName = function () {
+//        console.log(4);
+//    };
+//    function getName() {console.log(5);}
+//    Foo.getName(); // 2
+//    getName(); // 4
+//    Foo().getName(); // 1
+//    getName(); // 1
+//    new Foo.getName(); // 2
+
+
+
+
+
+</script>
+</body>
+</html>

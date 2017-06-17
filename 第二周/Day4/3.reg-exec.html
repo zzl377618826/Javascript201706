@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    // exec: 将正则匹配部分的内容捕获到
+    
+//    var reg = /\d+/;
+//    var res = reg.exec('abc123');
+//    console.log(res);
+//    console.log(res[0]); // ["123", index: 3, input: "abc3"]
+    
+    // exec将捕获到的内容放到一个数组里
+    // 1.第一项是整个正则匹配部分
+    // 2.index 捕获到的索引位置
+    // 3.input 原始字符串
+    
+    var reg = /\d+/; // 懒惰性 g取消懒惰性 全局匹配
+    var str = 'abc123ccc666lwl999';
+    console.log(reg.exec(str));
+    console.log(reg.lastIndex); //下一次要开始查找的索引位置
+    reg.lastIndex = 12; // 加了 g 手工指定下一次开始查找索引位置 是生效的
+    console.log(reg.exec(str));
+    console.log(reg.lastIndex);
+
+    // 通过调用exec 将上面的案例一次性全部捕获 将捕获到内容放到一个数组容器中 返回
+    
+//    console.log(reg.global); // 如果为true说明当前正则加了g修饰符 false没有取消懒惰性
+
+    function myMatch(reg, str) {
+
+    }
+
+
+//    console.log(reg.exec(str)); // null
+//    console.log(reg.exec(str)); // 重新开始第一次
+//    console.log(reg.exec(str)); // 重新开始第二次
+
+</script>
+</body>
+</html>
