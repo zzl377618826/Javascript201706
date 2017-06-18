@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    // exec
+    //    var str = 'abc111ccc111eee666';
+    //    var reg = /\d+/g;
+    //    console.log(reg.exec(str));
+    //    console.log(reg.exec(str));
+    //    console.log(reg.exec(str));
+    //
+    //    console.log(str.match(reg));
+
+    //   String.prototype.myMatch = function (reg) {
+    //           var res = reg.exec(this);
+    //            if(reg.global) { // 如果有g修饰符 就说明 全局匹配
+    //                var arr = [];
+    //                while (res){
+    //                    arr.push(res[0]);
+    //                    res = reg.exec(this);
+    //                }
+    //               return arr.length? arr : null
+    //            }
+    //            return res;
+    //    };
+    //    console.log(str.match(reg));
+    //    console.log(str.myMatch(reg));
+
+    // 正则实例属性
+    // 1.flags  当前正则的修饰符
+    // 2.global true 是全局匹配 有g修饰符
+    // 3.ignoreCase true 忽略大小写 有 i修饰符
+    // 4. multiline true 多行匹配 有m修饰符
+    // 5.lastIndex 下一次匹配的起始位置
+    // 6.source  斜杠中的 正则内容
+
+
+    //
+//    var str = 'lwla666c9';
+//    var reg = /([a-z](\d+)([a-z]))(\d)/g;
+//    console.log(reg.exec(str)); // a666c => \d+ => 666
+    // 分组捕获： 将大正则 划分为 小正则 （子表达式）,首先得到大正则捕获到的内容 a666c 然后在用小正则 在里面捕获到相应内容 666
+    // ["a666c", "666", index: 3, input: "lwla666c"]
+    // 第一项是我们大正则捕获到的内容 从第二项开始 使我们分组捕获到的内容
+
+    // 区分分组
+    // 看括号左半部分 是第几个 就是第几个分组
+    //    /([a-z](\d+)([a-z]))(\d)/g;
+    //    ["a666c9", "a666c", "666", "c", "9", index: 3, input: "lwla666c9"]
+
+//    var str = '是否你好{0}ac嗨{1}ed say is 666';
+//    var reg = /(\{(\d)\})[a-z]/g;
+//    console.log(reg.exec(str)); // ["{0}", "0", index: 6, input: "你好{0}嗨{1} say is 666"]
+//    console.log(reg.exec(str)); // ["{1}", "1", index: 6, input: "你好{0}嗨{1} say is 666"]
+    // $1-$9
+//    console.log(RegExp.$1); // 通过RegExp得到最近正则捕获到的第一个分组
+//    console.log(RegExp.$2);
+//    console.dir(RegExp);
+//    console.log(RegExp['$&']); // 大正则捕获到内容 {0}a
+//    console.log(RegExp["$'"]); // 大正则捕获到内容的后面部分 c嗨{1}ed say is 666';
+//    console.log(RegExp["$`"]); // 大正则捕获到内容的前面部分  是否你好
+
+
+    // exec match
+    // 1.exec是正则属性方法 match是字符串捕获方法
+    // 2. 如果正则不加g match 和 exec捕获到的内容格式是一样的
+    // 3. 如果加了g  match可以一次性将所有捕获到 放到一个数组容器中 而 exec需要捕获多次
+
+    // exec 与 match 分组捕获区别
+    // 如果是全局匹配 match 只能将所有大正则的内容捕获到 不能捕获到分组的内容
+    // 如果不是全局匹配 match 和 exec 一样 可以 将分组内容捕获到
+
+
+    // 有效数字
+//    var reg = /^([+-]?(?:\d|[1-9]\d+))(?:\.(\d+))?$/;
+    // 将大正则捕获到的有效数字内容中的 整数部分 和小数部分 通过分组 捕获到
+//    console.log(reg.exec('-10.123')); 
+    // "-10.123" 是大正则捕获到的内容
+    // "-10" 是从大正则中捕获到的整数部分
+    // "123" 是从大正则中捕获到的小数部分
+    
+    // ["-10.123", "-10", "123", index: 0, input: "-10.123"]
+    
+    // 在分组里 开头加?: 代表是只匹配不捕获
+    // (?:\d|[1-9]\d+) 为了改变优先级 只匹配不捕获
+    // (?:\.\d+)? 限制这个整体 出现次数 把(\.\d+)限制为整体 只匹配不捕获
+    
+
+//    var reg = /^f|good$/; // 是f开头或者都是good结尾的都可以匹配
+//    var reg = /^(f|good)$/; // 只能是f或者good 括号改变优先级
+    
+    
+//    var reg = /\{(\d+)\}/;
+//    var str = '是否你好{0}ac嗨{1}ed say is 666 {2}';
+//    console.log(reg.exec(str));
+//    console.log(str.match(reg));
+
+    
+//    var reg = /\d/g;
+//    var str = 'ab1cc6ee7';
+//    var str = 'a1c6ac';
+//    console.log(reg.exec(str)); //'a1'
+//    console.log(reg.exec(str)); //'c6'
+//    console.log(reg.test(str)); // ac false
+
+//    console.log(reg.test(str)); // 6 c6
+//    console.log(reg.test(str)); // false ab到头了
+//    console.log(reg.test(str)); // 1 a1
+//    console.log(reg.test(str)); // 6 c6
+
+
+
+
+//    console.log(reg.test(str)); // ab1
+//    console.log(reg.lastIndex); // 3
+//    console.log(reg.test(str)); // cc6
+//    console.log(reg.lastIndex); // 6
+//    console.log(reg.test(str)); // ee7
+//    console.log(reg.lastIndex);
+//    console.log(reg.test(str)); // 到头了
+//    console.log(reg.lastIndex); // 0
+//    console.log(reg.test(str)); // 从 0 开始  ab1
+
+//    console.log(reg.lastIndex); // 0
+//    console.log(reg.exec(str)); // ab1
+//    console.log(reg.lastIndex); // 3
+//    console.log(reg.exec(str)); // cc6
+//    console.log(reg.lastIndex); // 6
+//    console.log(reg.exec(str)); // ee7
+//    console.log(reg.lastIndex);
+//    console.log(reg.exec(str)); // 到头了
+//    console.log(reg.lastIndex); // 0
+//    console.log(reg.exec(str)); // 从 0 开始  ab1
+
+
+//    console.log(reg.lastIndex); // 3 下一次匹配的起始位置
+//    reg.lastIndex = 6;
+//    console.log(reg.exec(str));
+
+
+
+
+</script>
+</body>
+</html>

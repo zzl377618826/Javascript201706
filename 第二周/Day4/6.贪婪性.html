@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+// 正则贪婪性：按照符合规则 最长匹配 能多匹配就多匹配 绝不少匹配
+//    var reg = /\d+/g;
+//    var str = 'zhufeng123zhufeng456zhufeng789';
+//    console.log(reg.exec(str));
+//    console.log(reg.exec(str));
+//    console.log(reg.exec(str));
+    
+//    var reg = /[a-z]{2,4}/g;
+//    var reg = /[a-z]{2,4}/g; // {2,4} 取消了贪婪性 不会按最长匹配（4） 只按2个进行匹配
+//    var str = 'zhufengee123www456ccc789';
+//    console.log(reg.exec(str));
+//    console.log(reg.exec(str));
+//    console.log(reg.exec(str));
+    // 在量词后面加上? 取消贪婪性 按照最短进行匹配
+
+//    var reg = /[a-z]{2,4}?/;
+//    console.log(reg.exec('zhuf123'));
+//    console.log(reg.exec('zhuf343'));
+//    console.log(reg.exec('zhuf4545'));
+
+
+</script>
+</body>
+</html>
