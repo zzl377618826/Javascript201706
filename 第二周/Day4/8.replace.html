@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+    //
+    // search 支持正则 类似于indexOf
+    //    var str = 'hello666 zhufeng123';
+    //    console.log(str.search('zhufeng'));
+    //    console.log(str.indexOf('1'));
+    //    console.log(str.search(/\d/));
+
+    // replace
+    var str = 'react123 vue456 node789 koa999';
+    // str = str.replace(/\d+/g, 'js');
+    console.log(str);
+//    str = str.replace(/([a-z]+)(\d+)/g, function (a, b, c) { // 匹配几次就执行几次
+//        // a 是大正则匹配到的内容
+//        // 分组从第二个参数开始传递进来
+////        console.log(arguments);
+////        console.log(a); // 大正则捕获到的内容
+////        console.log(b); // 第一个分组
+////        console.log(c); // 第二个分组
+//        return c + '-' + b; // return 什么 就会将匹配到的替换成什么
+//    });
+
+//    str = str.replace(/([a-z]+)(\d+)/g, '$2-$1'); //RegExp.$1 RegExp.$2
+//    console.log(str);
+    
+//     var str = 'nodeANDreactANDvueANDkoa';
+//     str = str.replace(/and/ig, '和');
+//     console.log(str);
+
+      var str = '2017-01-01 18:01:30'; // 2017年01月01日 18时01分30秒
+
+      // 方式一
+//      var reg = /(\d+)-(\d+)-(\d+) (\d+):(\d+):(\d+)/;
+//      str = str.replace(reg, '$1年$2月$3日 $4时$5分$6秒');
+//    str = str.replace(reg, function () {
+//        console.log(arguments);
+//    });
+//    console.log(RegExp.$1); // 在捕获后使用
+//      console.log(str);
+    
+     // 方式二
+//    var reg = /(\d+)[:-]?/g;
+//    var arr = ['年', '月', '日 ', '时', '分','秒'];
+//    var n = 0;
+//    str = str.replace(reg, function (a, b) {
+//        console.log(arguments);
+//        return b + arr[n++];
+//    }); 
+//     console.log(str);
+    // 方式三
+    
+//    var reg = /[: -]|$/g;
+//    var reg = /\D|$/g;
+//    var arr = ['年', '月', '日 ', '时', '分','秒'];
+//    var n = 0;
+//    str = str.replace(reg, function () {
+//        console.log(arguments);
+//        return arr[n++];
+//    });
+//    console.log(str);
+    
+    // 方式四 模板引擎原理
+//    var template = '{0}年{1}月{2}日 {3}时{4}分{5}秒';
+//    
+//    var arr = str.split(/[: -]/);
+//    console.log(arr); // ["2017", "01", "01", "18", "01", "30"]
+//    var reg = /\{(\d+)\}/g; // 将template{}中的数字匹配出来 作为索引
+//    template = template.replace(reg, function (a, b) {
+////        console.log(arguments[1]); // 第一个分组 作为索引 替换成arr中相应的字符
+//         console.log(b);
+//
+//         return arr[b];
+//    });
+//    console.log(template);
+
+    // 去掉首尾空格
+     var str2 = '  hello world  ';
+//    var reg = /^\s+|\s+$/g;
+      var reg = /^ +| +$/g;
+
+//    var reg = /\s+/g; // 将所有包含的空格去掉
+    str2 = str2.replace(reg, '');
+    console.log(str2);
+  
+</script>
+</body>
+</html>
