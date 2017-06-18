@@ -40,9 +40,9 @@
 
 
     //
-//    var str = 'lwla666c9';
-//    var reg = /([a-z](\d+)([a-z]))(\d)/g;
-//    console.log(reg.exec(str)); // a666c => \d+ => 666
+    //    var str = 'lwla666c9';
+    //    var reg = /([a-z](\d+)([a-z]))(\d)/g;
+    //    console.log(reg.exec(str)); // a666c => \d+ => 666
     // 分组捕获： 将大正则 划分为 小正则 （子表达式）,首先得到大正则捕获到的内容 a666c 然后在用小正则 在里面捕获到相应内容 666
     // ["a666c", "666", index: 3, input: "lwla666c"]
     // 第一项是我们大正则捕获到的内容 从第二项开始 使我们分组捕获到的内容
@@ -52,17 +52,17 @@
     //    /([a-z](\d+)([a-z]))(\d)/g;
     //    ["a666c9", "a666c", "666", "c", "9", index: 3, input: "lwla666c9"]
 
-//    var str = '是否你好{0}ac嗨{1}ed say is 666';
-//    var reg = /(\{(\d)\})[a-z]/g;
-//    console.log(reg.exec(str)); // ["{0}", "0", index: 6, input: "你好{0}嗨{1} say is 666"]
-//    console.log(reg.exec(str)); // ["{1}", "1", index: 6, input: "你好{0}嗨{1} say is 666"]
+    //    var str = '是否你好{0}ac嗨{1}ed say is 666';
+    //    var reg = /(\{(\d)\})[a-z]/g;
+    //    console.log(reg.exec(str)); // ["{0}", "0", index: 6, input: "你好{0}嗨{1} say is 666"]
+    //    console.log(reg.exec(str)); // ["{1}", "1", index: 6, input: "你好{0}嗨{1} say is 666"]
     // $1-$9
-//    console.log(RegExp.$1); // 通过RegExp得到最近正则捕获到的第一个分组
-//    console.log(RegExp.$2);
-//    console.dir(RegExp);
-//    console.log(RegExp['$&']); // 大正则捕获到内容 {0}a
-//    console.log(RegExp["$'"]); // 大正则捕获到内容的后面部分 c嗨{1}ed say is 666';
-//    console.log(RegExp["$`"]); // 大正则捕获到内容的前面部分  是否你好
+    //    console.log(RegExp.$1); // 通过RegExp得到最近正则捕获到的第一个分组
+    //    console.log(RegExp.$2);
+    //    console.dir(RegExp);
+    //    console.log(RegExp['$&']); // 大正则捕获到内容 {0}a
+    //    console.log(RegExp["$'"]); // 大正则捕获到内容的后面部分 c嗨{1}ed say is 666';
+    //    console.log(RegExp["$`"]); // 大正则捕获到内容的前面部分  是否你好
 
 
     // exec match
@@ -76,72 +76,68 @@
 
 
     // 有效数字
-//    var reg = /^([+-]?(?:\d|[1-9]\d+))(?:\.(\d+))?$/;
+    //    var reg = /^([+-]?(?:\d|[1-9]\d+))(?:\.(\d+))?$/;
     // 将大正则捕获到的有效数字内容中的 整数部分 和小数部分 通过分组 捕获到
-//    console.log(reg.exec('-10.123')); 
+    //    console.log(reg.exec('-10.123'));
     // "-10.123" 是大正则捕获到的内容
     // "-10" 是从大正则中捕获到的整数部分
     // "123" 是从大正则中捕获到的小数部分
-    
+
     // ["-10.123", "-10", "123", index: 0, input: "-10.123"]
-    
+
     // 在分组里 开头加?: 代表是只匹配不捕获
     // (?:\d|[1-9]\d+) 为了改变优先级 只匹配不捕获
     // (?:\.\d+)? 限制这个整体 出现次数 把(\.\d+)限制为整体 只匹配不捕获
-    
-
-//    var reg = /^f|good$/; // 是f开头或者都是good结尾的都可以匹配
-//    var reg = /^(f|good)$/; // 只能是f或者good 括号改变优先级
-    
-    
-//    var reg = /\{(\d+)\}/;
-//    var str = '是否你好{0}ac嗨{1}ed say is 666 {2}';
-//    console.log(reg.exec(str));
-//    console.log(str.match(reg));
-
-    
-//    var reg = /\d/g;
-//    var str = 'ab1cc6ee7';
-//    var str = 'a1c6ac';
-//    console.log(reg.exec(str)); //'a1'
-//    console.log(reg.exec(str)); //'c6'
-//    console.log(reg.test(str)); // ac false
-
-//    console.log(reg.test(str)); // 6 c6
-//    console.log(reg.test(str)); // false ab到头了
-//    console.log(reg.test(str)); // 1 a1
-//    console.log(reg.test(str)); // 6 c6
 
 
+    //    var reg = /^f|good$/; // 是f开头或者都是good结尾的都可以匹配
+    //    var reg = /^(f|good)$/; // 只能是f或者good 括号改变优先级
 
 
-//    console.log(reg.test(str)); // ab1
-//    console.log(reg.lastIndex); // 3
-//    console.log(reg.test(str)); // cc6
-//    console.log(reg.lastIndex); // 6
-//    console.log(reg.test(str)); // ee7
-//    console.log(reg.lastIndex);
-//    console.log(reg.test(str)); // 到头了
-//    console.log(reg.lastIndex); // 0
-//    console.log(reg.test(str)); // 从 0 开始  ab1
-
-//    console.log(reg.lastIndex); // 0
-//    console.log(reg.exec(str)); // ab1
-//    console.log(reg.lastIndex); // 3
-//    console.log(reg.exec(str)); // cc6
-//    console.log(reg.lastIndex); // 6
-//    console.log(reg.exec(str)); // ee7
-//    console.log(reg.lastIndex);
-//    console.log(reg.exec(str)); // 到头了
-//    console.log(reg.lastIndex); // 0
-//    console.log(reg.exec(str)); // 从 0 开始  ab1
+    //    var reg = /\{(\d+)\}/;
+    //    var str = '是否你好{0}ac嗨{1}ed say is 666 {2}';
+    //    console.log(reg.exec(str));
+    //    console.log(str.match(reg));
 
 
-//    console.log(reg.lastIndex); // 3 下一次匹配的起始位置
-//    reg.lastIndex = 6;
-//    console.log(reg.exec(str));
+    //    var reg = /\d/g;
+    //    var str = 'ab1cc6ee7';
+    //    var str = 'a1c6ac';
+    //    console.log(reg.exec(str)); //'a1'
+    //    console.log(reg.exec(str)); //'c6'
+    //    console.log(reg.test(str)); // ac false
+
+    //    console.log(reg.test(str)); // 6 c6
+    //    console.log(reg.test(str)); // false ab到头了
+    //    console.log(reg.test(str)); // 1 a1
+    //    console.log(reg.test(str)); // 6 c6
 
 
+    //    console.log(reg.test(str)); // ab1
+    //    console.log(reg.lastIndex); // 3
+    //    console.log(reg.test(str)); // cc6
+    //    console.log(reg.lastIndex); // 6
+    //    console.log(reg.test(str)); // ee7
+    //    console.log(reg.lastIndex);
+    //    console.log(reg.test(str)); // 到头了
+    //    console.log(reg.lastIndex); // 0
+    //    console.log(reg.test(str)); // 从 0 开始  ab1
+
+    //    console.log(reg.lastIndex); // 0
+    //    console.log(reg.exec(str)); // ab1
+    //    console.log(reg.lastIndex); // 3
+    //    console.log(reg.exec(str)); // cc6
+    //    console.log(reg.lastIndex); // 6
+    //    console.log(reg.exec(str)); // ee7
+    //    console.log(reg.lastIndex);
+    //    console.log(reg.exec(str)); // 到头了
+    //    console.log(reg.lastIndex); // 0
+    //    console.log(reg.exec(str)); // 从 0 开始  ab1
+
+
+    //    console.log(reg.lastIndex); // 3 下一次匹配的起始位置
+    //    reg.lastIndex = 6;
+    //    console.log(reg.exec(str));
 
 
 </script>
