@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #btn {
+            width: 300px;
+            height: 500px;
+            border: 1px solid black;
+            margin: 100px;
+        }
+        html, body {
+            width: 100%;
+            height: 100%;
+            /*overflow: hidden;*/
+        }
+        #back {
+            width: 100px;
+            height: 100px;
+            border: 1px solid red;
+            position: fixed;
+            right: 80px;
+            bottom: 100px;
+        }
+        /*div {*/
+            /*width: 400px;*/
+            /*height: 500px;*/
+            /*background-color: green;*/
+        /*}*/
+    </style>
+</head>
+<body>
+<button id="oBtn">123</button>
+<!--<a href="#div1">go div1</a>-->
+<!--<a href="#div2">go div2</a>-->
+<!--<a href="#div3">go div3</a>-->
+<!--<a href="#div4">go div4</a>-->
+<h3 id="top">顶部</h3>
+<div id="btn">点击</div>
+<button id="back">回到顶部</button>
+<a href="#top">回到顶部</a>
+
+
+<!--<div id="div1">div1</div>-->
+<!--<div id="div2">div2</div>-->
+<!--<div id="div3">div3</div>-->
+<!--<div id="div4">div4</div>-->
+<script type="text/javascript">
+    var oBtn = document.getElementById('oBtn');
+    oBtn.onclick = function () {
+        console.log(123123);
+    }
+    back.onclick = function () {
+        document.documentElement.scrollTop = document.body.scrollTop = 0;
+    }
+    var btn = document.getElementById('btn');
+    btn.onclick = function (e) {
+        console.log(123);
+//        e = e || window.event; // 事件对象兼容
+//        e.target = e.target || e.srcElement; // 事件源兼容
+        // 针对于窗口左上角
+//        console.log('clientX：' + e.clientX); // 鼠标距离窗口X轴坐标（到Y轴的距离）
+//        console.log('clientY：' + e.clientY); // 鼠标距离窗口Y轴坐标（到X轴的距离）
+//        // 针对于html页面左上角
+//        console.log('pageX：' + e.pageX); // 鼠标距离html页面x轴坐标
+//        console.log('pageY：' + e.pageY); // 鼠标距离html页面y轴坐标
+
+        // 横向滚动条滚出去的距离
+//        var scrollLeft = document.documentElement.scrollLeft || document.body.scrollLeft;
+        // 纵向滚动条滚出去距离
+//        var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+        // pageX pageY 兼容写法
+//        var pageX = e.clientX + scrollLeft;
+//        var pageY = e.clientY + scrollTop;
+//        console.log('pageX：' + pageX); // 鼠标距离html页面x轴坐标
+//        console.log('pageY：' + pageY); // 鼠标距离html页面y轴坐标
+
+          // 针对于屏幕的左上角坐标
+//        console.log(e.screenX); // 针对于屏幕x轴
+//        console.log(e.screenY); // 针对于屏幕y轴
+
+
+        // 针对于当前元素的左上角坐标
+//        console.log(e.offsetX);
+//        console.log(e.offsetY);
+
+
+
+
+
+
+
+        console.log(e);
+//        console.log(e.target); // 事件源 导致事件触发的元素
+//        console.log(e.srcElement === btn); // ie事件源
+    }
+</script>
+</body>
+</html>

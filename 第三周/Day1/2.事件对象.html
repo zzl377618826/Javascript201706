@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="btn">点击</button>
+<input type="text" id="inp">
+<script type="text/javascript">
+    var btn = document.getElementById('btn');
+    btn.onclick = function (e) {
+      /*  console.log(e);
+        console.log(window.event);*/
+        e = e || window.event; // 事件对象兼容性
+//        console.log(e);/**/
+//        console.log(e); // 当事件触发的时候 浏览器默认会为处理函数传递一个参数
+//        console.log(window.event); // ie 8-6
+        // 事件对象：是一个对象数据类型的值 存储着事件相关信息
+//        console.log(e.type); // 事件类型
+//        console.log(e.target);
+        
+    }
+    
+//    inp.onkeydown = function (e) {
+//        console.log(e);
+//    }
+</script>
+</body>
+</html>

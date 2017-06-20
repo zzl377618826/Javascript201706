@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+         #outer {
+             width: 300px;
+             height: 300px;
+             background-color: #7bff88;
+             margin: 20px auto;
+             padding: 50px;
+             box-sizing: border-box;
+         }
+
+         #inner {
+             width: 200px;
+             height: 200px;
+             background-color: #799dff;
+             padding: 50px;
+             box-sizing: border-box;
+         }
+
+        #center {
+            width: 100px;
+            height: 100px;
+            background-color: #ff1e0c;
+        }
+
+    </style>
+</head>
+<body>
+<div id="outer">
+    <div id="inner">
+        <div id="center"></div>
+    </div>
+</div>
+
+<!-- 阻止默认行为 -->
+<!--<a href="javascript:;" id="link">跳转百度</a>-->
+<script type="text/javascript">
+    // 默认行为 ： 比如a标签点击时候 默认会跳转
+//    var link = document.getElementById('link');
+//    link.onclick = function (e) {
+//        e = e || window.event;
+////      e.preventDefault(); // 阻止默认行为
+////      e.returnValue = false;
+//        // 兼容写法
+////        e.preventDefault ? e.preventDefault() : e.returnValue = false;
+//
+//
+//        console.log(123);
+//        alert(123);
+////      return false; // 阻止默认行为
+//    }
+
+    // 事件传播（事件冒泡）: 当前元素的相关行为（click）触发的时候，它的所有上级元素的相关行为（click）也会触发 一直到document
+
+    document.onclick = function (e) {
+//        console.log(e.target);
+        console.log('document');
+    };
+
+    document.body.onclick = function () {
+        console.log('body');
+    };
+
+    outer.onclick = function () {
+        console.log('outer');
+    };
+
+    inner.onclick = function () {
+       
+        console.log('inner');
+    };
+
+    center.onclick = function (e) {
+        e = e || window.event;
+//        e.stopPropagation(); //阻止冒泡传播
+//        e.cancelBubble = true;
+        e.stopPropagation? e.stopPropagation() : e.cancelBubble = true;
+
+        console.log('center');
+    };
+</script>
+</body>
+</html>
