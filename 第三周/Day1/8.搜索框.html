@@ -62,7 +62,6 @@
     document.body.onclick = function (e) {
         e = e || window.event;
         var tar = e.target || e.srcElement;
-        console.log(tar.id);
         // 事件源 是li 和 input时候 才显示 其他都隐藏
         if(tar.parentNode === list || tar.id === 'search') {
             if(search.value) {

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #oDiv {
+            width: 200px;
+            height: 200px;
+            background-color: rebeccapurple;
+
+        }
+
+        #outer {
+            padding-top: 20px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="outer">
+    <div id="oDiv">
+
+    </div>
+</div>
+
+<script type="text/javascript">
+//    onmouseenter/onmouseover(滑入) onmouseleave/onmouseout(滑出)
+
+    // onmouseenter onmouseleave 没有冒泡传播 (保证上级元素 也是一样的事件行为)
+    outer.onmouseenter = function (e) {
+        console.log('outer-over');
+    };
+
+    outer.onmouseleave = function () {
+        console.log('outer-out');
+    };
+
+
+    oDiv.onmouseenter = function (e) {
+        console.log('overEnter');
+    };
+
+    oDiv.onmouseleave = function (e) {
+        console.log('overLeave');
+    };
+
+//        outer.onmouseover = function () {
+//            console.log('outer-over');
+//        };
+//
+//        outer.onmouseout = function () {
+//            console.log('outer-out');
+//        };
+//
+//
+//
+//        oDiv.onmouseover = function () {
+//            console.log('over');
+//        };
+//
+//        oDiv.onmouseout = function () {
+//            console.log('out');
+//        };
+</script>
+</body>
+</html>
