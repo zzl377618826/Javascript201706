@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #panel {
+            border: 1px solid black;
+            width: 300px;
+            height: 1000px;
+            overflow-y: scroll;
+        }
+    </style>
+</head>
+<body>
+<input type="text" placeholder="请输入提示信息" id="write">
+
+<button id="btn">触发</button>
+<!--<input type="number" id="inp"> * <input type="number" id="inp2">-->
+<!--<p id="text"></p>-->
+
+<input type="text" id="insert">
+<h3>面板</h3>
+<div id="panel"></div>
+输入框：<input type="text" id="enter">
+<img src="http://img3.imgtn.bdimg.com/it/u=1351197506,3270255899&fm=26&gp=0.jpg" alt="" id="oImg">
+<script type="text/javascript">
+    // 常用事件：onclick onmouseover onmouseout onmouseenter onmouseleave ondblclick onresize onmousedown onmouseup onmousemove onchange oninput onfocus onblur onkeydown  onkeyup onload onscroll onmousewheel...
+    // DOM0 级事件
+
+    // 事件 一种行为 根据相应行为 触发相应的 方法
+    // 事件类型 
+    // 事件处理（监听）函数（事件处理器）
+
+    write.onfocus = function (e) {
+        console.log(e); // 事件对象
+        this.value = '';
+        console.log('focus');
+    };
+    //
+    //    write.onblur = function () {
+    ////        this.value = '';
+    //    };
+
+
+    //    btn.onclick = function () {
+    //        console.log('点击');
+    //    }
+    //
+    //    console.dir(btn);
+
+
+    //    window.onscroll = function () { // 滚动条事件
+    ////        console.log('onscroll');
+    //    }
+
+    //       window.onmousewheel = function (e) {  火狐没有这个事件
+    //           console.log(e);
+    ////           console.log('mousewheel');
+    ////           console.log(e.wheelDelta); // 判断滚轮方向 向下滑 -120 向上滑 120
+    //       }
+
+    //   window.addEventListener("DOMMouseScroll", function(event) {
+    //        console.log(event);
+    //    });
+
+
+    //    oImg.onload = function () {
+    //        console.log('加载成功');
+    //    };
+    //
+    //    oImg.onerror = function () {
+    //        console.log('加载失败');
+    //    }
+    //
+    //   window.onload = function () { // 等dom结构以及页面中的所有 文件资源 图片等都加载完才会触发
+    //       console.log(123);
+    //   }
+
+    //    enter.onkeydown = function (e) {
+    //        if (e.keyCode === 13) { // enter e.keyCode 键码值
+    //            var val = this.value;
+    //            if(val){
+    //                var p = document.createElement('p');
+    //                p.innerHTML = val;
+    //                panel.appendChild(p);
+    //                this.value = '';
+    //            }
+    //        }
+    //    }
+
+    //    insert.onkeyup = function () {
+    //        console.log('keyUp');
+    //    };
+
+    //    insert.onkeydown = function (e) {
+    ////        console.log('keyDown');
+    //        console.log(e.keyCode);
+    //    };
+
+
+    //    inp2.oninput = inp.oninput = computed;
+    //
+    //    function computed() {
+    //        text.innerHTML = '￥'+ inp.value * inp2.value;
+    //    }
+
+    //    inp2.oninput = function () {
+    //        text.innerHTML = '￥'+ this.value * inp.value;
+    //    }
+    //    inp.onchange = function () {
+    //        console.log('change');
+    //    }
+
+    //    btn.ondblclick = function () {
+    //        alert(123);
+    //    };
+
+    //    btn.onmousedown = function () { // 鼠标按下
+    //        console.log('down');
+    //    };
+
+    //    btn.onmouseup = function () { // 鼠标抬起
+    //            console.log('up');
+    //    };
+
+    //    btn.onmousemove = function () { // 鼠标移动
+    //        console.log('move');
+    //    }
+
+    //    btn.onclick = function () {
+    //        console.log('click');
+    //    };
+    //    window.onresize = function () {
+    //        console.log('窗口大小改变');
+    //    }
+
+</script>
+</body>
+</html>
