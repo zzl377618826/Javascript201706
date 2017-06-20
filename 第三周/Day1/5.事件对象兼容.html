@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="oDiv"><button id="btn">点击</button></div>
+
+<script type="text/javascript">
+    var btn = document.getElementById('btn');
+    btn.onclick = function (e) {
+//        e = e || window.event; // 事件对象
+//        e.target = e.target || e.srcElement; // 事件源
+//        e.clientX;
+//        e.clientY;
+//        e.type;
+//          e.pageX = (document.documentElement.scrollLeft || document.body.scrollLeft) + e.clientX;
+//          e.pageY = (document.documentElement.scrollTop || document.body.scrollTop) + e.clientY;
+        // 阻止默认行为
+//          e.preventDefault? e.preventDefault() : e.returnValue = false;
+        // 阻止冒泡传播
+        e.stopPropagation ? e.stopPropagation() : e.cancelBubble = true;
+//
+//        e.keyCode;
+//        e.key;
+//        e.screenX;
+//        e.screenY;
+//        e.offsetX;
+//        e.offsetY;
+          console.log(e);
+    }
+</script>
+</body>
+</html>

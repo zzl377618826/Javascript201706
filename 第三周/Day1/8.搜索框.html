@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        html, body {
+            width: 100%;
+            height: 100%;
+        }
+        #list {
+            margin-left: 50px;
+            display: none;
+            border: 1px solid black;
+        }
+        ul {
+            width: 200px;
+            list-style: none;
+        }
+    </style>
+</head>
+<body>
+搜索：<input type="text" id="search">
+<ul id="list">
+    <li>111</li>
+    <li>222</li>
+    <li>333</li>
+</ul>
+
+<h3>123123</h3>
+<h3>123123</h3>
+<h3>123123</h3>
+<h3>123123</h3>
+<h3>123123</h3>
+<h3>123123</h3>
+<h3>123123</h3>
+<h3>123123</h3>
+<h3>123123</h3>
+<h3>123123</h3>
+<p>132123123</p>
+<script type="text/javascript">
+
+
+    var search = document.getElementById('search');
+    var list = document.getElementById('list');
+    var oLis = list.getElementsByTagName('li');
+    search.oninput = function () {
+        if(this.value) {
+            list.style.display = 'block';
+            for(var i = 0; i< oLis.length; i++){
+                oLis[i].innerHTML = this.value;
+            }
+        } else {
+            list.style.display = 'none';
+        }
+    };
+
+    document.body.onclick = function (e) {
+        e = e || window.event;
+        var tar = e.target || e.srcElement;
+        console.log(tar.id);
+        // 事件源 是li 和 input时候 才显示 其他都隐藏
+        if(tar.parentNode === list || tar.id === 'search') {
+            if(search.value) {
+                list.style.display = 'block';
+            }
+
+        } else {
+            list.style.display = 'none';
+        }
+    }
+
+
+
+</script>
+</body>
+</html>
