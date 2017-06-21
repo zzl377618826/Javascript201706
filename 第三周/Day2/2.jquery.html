@@ -8,68 +8,202 @@
             width: 200px;
             height: 200px;
             background-color: red;
+            margin-bottom: 20px;
+        }
+
+        .oDiv1 {
+            /*display: none;*/
         }
     </style>
 </head>
 <body>
 <div id="oDiv"></div>
+<button id="btn">显示隐藏</button>
+<div class="oDiv1"></div>
+<div class="oDiv1"></div>
+<div class="oDiv1"></div>
+<div class="oDiv1"></div>
+<ul>
+    <li>11</li>
+    <li>22</li>
+    <li>33</li>
+    <li class="li4">44</li>
+    <li>55</li>
+</ul>
 <script type="text/javascript" src="js/jquery.js"></script>
 <script type="text/javascript">
+    //        $(function () {
+    //                $('.oDiv1').addClass('css1').html('`12323232323232323232323232323').css('backgroundColor', 'green')
+    //            $('#btn').click(function () {
+    //                $('.oDiv1').toggle();
+    //            })
+    //        });
+    var oDiv = document.getElementById('oDiv');
 
-    console.log($('#oDiv')); // 直接返回的是 return  new jQuery.fn.init
+
+    //    console.log($(''));
+    //    console.log($('div')); // 直接返回的是 return  new jQuery.fn.init
     // jQuery.fn.init 就是 jq对象的构造器（构造jq实例） 实现无new构造
-    
     (function () {
         var aQuery = function (selector, context) {
-
             return new aQuery.fn.init(selector, context)
         };
 
+        // 原型上属性方法
         aQuery.fn = aQuery.prototype = {
             constructor: aQuery,
             aquery: '1.11.3',
             addClass: function (cname) {
-               console.log(this);
-               if(cname) {
-                   console.log(this[0]); // 得到原生对象
-                   this[0].className += ' ' + cname;
-               }
-               return this;
+                console.log(this);
+                if (cname) {
+                    for (var i = 0; i < this.length; i++) {
+                        this[i].className += ' ' + cname;
+                    }
+                }
+                return this;
             },
             html: function (text) {
-                if(text){
-                    this[0].innerHTML = text;
+                if (text) {
+                    for (var i = 0; i < this.length; i++) {
+                        this[i].innerHTML = text;
+                    }
                 }
                 return this;
             },
             css: function (attr, val) {
-                if(typeof val === 'undefined') {
+                if (typeof val === 'undefined') {
                     return this[0].style[attr];
                 } else {
-                    this[0].style[attr] = val;
+                    for (var i = 0; i < this.length; i++) {
+                        this[i].style[attr] = val;
+                    }
                     return this;
                 }
+            },
+            show: function () {
+                for (var i = 0; i < this.length; i++) {
+                    this[i].style.display = 'block';
+                }
+            },
+            hide: function () {
+                for (var i = 0; i < this.length; i++) {
+                    this[i].style.display = 'none';
+                }
+            },
+            toggle: function () {
+                for (var i = 0; i < this.length; i++) {
+                    if (this[i].style.display === 'none') {
+                        this[i].style.display = 'block';
+                    } else {
+                        this[i].style.display = 'none';
+                    }
+                }
+            },
+
+            index: function () {
+                var prev = this[0].previousSibling;
+                var count = 0;
+                while (prev){
+                    if(prev.nodeType === 1){
+                        count++;
+                    }
+                    prev = prev.previousSibling;
+                }
+                return count;
             }
         };
 
+
+        // 自身属性上添加方法
+        aQuery.toArray = function (likeArray) {
+            return [].slice.call(likeArray)
+        };
+
+        aQuery.type = function (context) {
+             if(typeof context !== 'object') {
+                 return typeof context;
+             } else {
+                 if(context instanceof Array){
+                     return 'array'
+                 } else if(context instanceof RegExp){
+                     return 'regexp'
+                 } else {
+                     return 'object';
+                 }
+             }
+        };
+
+
         // jq 对象构造器 负责在内部 构造jq实例
-        aQuery.fn.init = function (selector) {
-            console.log(selector); // '#oDiv'
-            var elem = document.getElementById(selector.slice(1));
-//            console.log(elem);
-            this[0] = elem;
-            this.length = 1;
-            this.context = document;
-            this.selector = selector;
-             return this;
+        aQuery.fn.init = function (selector, context) {
+            if (!selector) {
+                return this;
+            }
+
+            if (typeof selector === 'string') {
+                context = context || document;
+                var elem;
+                var regId = /^#([\w-]+)$/;
+                var regClass = /^\.([\w-]+)$/;
+                if (regId.test(selector)) { // 处理$$(#id);
+//                    console.log(RegExp.$1);
+                    elem = document.getElementById(RegExp.$1);
+                    this[0] = elem;
+                    this.length = 1;
+                    this.context = document;
+                    this.selector = selector;
+                    return this;
+
+                } else if (regClass.test(selector)) {
+                    elem = context.getElementsByClassName(RegExp.$1);
+                    for (var k in elem) {
+                        this[k] = elem[k];
+                    }
+                    this.length = elem.length;
+                    this.context = context;
+                    this.selector = selector;
+                    return this;
+
+                } else {
+                    elem = context.getElementsByTagName(selector);
+                    for (var k in elem) {
+                        this[k] = elem[k];
+                    }
+                    this.length = elem.length;
+                    this.context = context;
+                    this.selector = selector;
+                    return this;
+                }
+            } else if (selector.nodeType) { // 处理原生对象
+                this[0] = selector;
+                this.length = 1;
+                this.context = selector;
+            }
         };
         aQuery.fn.init.prototype = aQuery.fn;
         window.$$ = window.aQuery = aQuery;
     })();
 
-    console.log($$('#oDiv')); // 无new构造实例
-//    console.log($$('#oDiv') instanceof aQuery);
-    $$('#oDiv').addClass('css1').html('hello jquery!').css('color', 'blue').css('font-size', '30px');
+    //    console.log($$(oDiv));
+    //    console.log($$(''));
+    //    console.log($$(null));
+    //    console.log($$(undefined));
+    //    console.log($$('div')); // 无new构造实例
+    //    console.log($$('#oDiv') instanceof aQuery);
+    //    $$('#oDiv').addClass('css1').html('hello jquery!').css('color', 'blue').css('font-size', '30px');
+
+    $$('.oDiv1').addClass('css1').html(3121212121212121212).css('backgroundColor', 'blue');
+
+    $$('#btn')[0].onclick = function () {
+        $$('.oDiv1').toggle();
+    };
+
+    // 调用自身属性方法
+    var oDivs = document.getElementsByTagName('div');
+    console.log(oDivs);
+    console.log($$.toArray(oDivs));
+    
+    
 </script>
 </body>
 </html>
