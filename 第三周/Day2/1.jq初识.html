@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .oDiv {
+            width: 200px;
+            height: 200px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<div id="oDiv"></div>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript">
+    // jquery: 一个前端js库,提供了 强大的选择器 DOM方法 ajax完整封装 事件 动画效果 工具方法 连缀写法...
+    //  jquery 1.0 2.0 3.0
+    //  jq 1.0 兼容 6-8
+    //  jq 2.0 不兼容 6-8 针对移动端（目前 zepto）
+    //  jq 3.0 不兼容 6-8 移除了一些特性 增加了一些新特性
+
+    // $  jQuery 都指向jq的构造函数 无new构造实例
+    //    window.jQuery = window.$ = jQuery; 将jq构造函数分别过载到全局属性jQuery和$上 供我们全局使用
+    //    console.dir($);
+    var oDiv = document.getElementById('oDiv');
+    console.dir(oDiv); // 原生对象
+    console.log($('#oDiv')); // jq 对象 在内部被包装成jq对象
+    //    console.log($('#oDiv') === oDiv);
+    // jQuery 自身属性的方法
+    $.each([11, 22, 33], function (ind, item) {
+        console.log(item);
+    });
+    // jQuery 原型上的方法 无new构造实例 生成jq对象 才可以以调用 jq原型上的方法
+    //    console.log($('#oDiv').jquery);
+    //    console.log($('#oDiv').addClass('oDiv'));
+    //    console.log(jQuery('#oDiv').addClass('oDiv'));
+
+    // jq 原型  jQuery.fn = jQuery.prototype
+    //    console.log($.fn);
+    //    console.log(jQuery.fn);
+    //    console.log($.fn.jquery); // jq 版本号
+
+    $('#oDiv').addClass('oDiv').html('hello jquery').css('color', 'blue');
+
+    //    function Fn() {
+    //
+    //    }
+    //    Fn.prototype.say = function () {
+    //        console.log('nihao');
+    //        return this;
+    //    };
+    //
+    //    Fn.prototype.haha = function () {
+    //        console.log('haha');
+    //        return this;
+    //    }
+    //
+    //    Fn.prototype.hei = function (test) {
+    //        console.log(test);
+    //    }
+    //
+    //    var fn = new Fn;
+    ////    fn.say() => fn
+    ////    fn.haha() => fn
+    //    fn.say().haha().hei('hello world')
+
+</script>
+</body>
+</html>
