@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        /*#list>.sp1 {*/
+        /*background-color: #ff6af2;*/
+        /*}*/
+    </style>
+</head>
+<body>
+<div id="oDiv" class="oDiv">123123</div>
+<ul id="list">
+    <li class="sp1">11</li>
+    <li class="li2">22 <span class="sp1">liiii</span></li>
+    <li class="li3">33 <span>liiii</span></li>
+    <li>44</li>
+    <li>55</li>
+    <li class="six">66</li>
+    <!--<span class="sp1">aaa</span>-->
+    <!--<span>ccc</span>-->
+</ul>
+<ul>
+    <li>111</li>
+    <li>222</li>
+    <li>333</li>
+    <li>111</li>
+    <li>222</li>
+    <li>333</li>
+    <!--<span>ccc</span>-->
+    <!--<span>ccc</span>-->
+</ul>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript">
+    $(function () {
+        // 基本选择器
+//        $('#oDiv').css('background', 'red'); // id选择器
+//        $('.oDiv').css('background', 'green'); // 类名选择器
+//        $('div').css('background', 'blue'); // 标签选择器
+//        console.log($('.li2, span, .li3')); // 群组选择器
+//        console.log($('*')); // 通配符选择器
+
+//        console.log($('.li2'));
+//        console.log($('li.li2'));
+//        console.log($('.li2+'));
+//        console.log($('.li3 + span'));
+//        console.log($('.li2~'));
+//        console.log($('.li2~ span')); // 后面跟着的所有同辈元素
+
+        // 层次选择器
+//        console.log($('#list span')); // 后代选择器
+//        console.log($('#list span.sp1').css('color', 'red'));
+//        console.log($('#list>span')); // 子代选择器
+//        console.log($('#list>span.sp1'));
+//        console.log($('#list>.sp1'));
+
+        // 过滤器 （过滤的是获取到的集合中元素）
+//        console.log($('#list li:first').css('background', 'red'));
+//        console.log($('ul li:first').css('background', 'red'));
+//        console.log($('ul li:last').css('background', 'red'));
+//        console.log($('ul li:eq(2)').css('background', 'red'));
+//        console.log($('ul li:lt(3)').css('background', 'red'));
+//        console.log($('ul li:gt(5)').css('background', 'blue'));
+//        console.log($('ul li:not(.six)').css('background', 'blue'));
+//        console.log($('ul li:odd').css('background', 'blue'));
+//        console.log($('ul li:even').css('background', 'red'));
+
+
+         // 子元素 过滤器 针对于每一个父容器
+//        console.log($('ul li:first-child').css('background', 'red'));
+//        console.log($('ul li:last-child').css('background', 'blue'));
+
+//        console.log($('ul li:nth-child(2)').css('background', 'blue'));
+//        console.log($('ul li:nth-child(odd)').css('background', 'blue'));
+//        console.log($('ul li:nth-child(even)').css('background', 'red'));
+//        console.log($('ul li:nth-child(2n)').css('background', 'blue'));
+//        console.log($('ul li:nth-child(3n)').css('background', 'blue'));
+//        console.log($('ul li:nth-child(2n+1)').css('background', 'blue'));
+//        console.log($('ul li:nth-last-child(4)').css('background', 'blue'));
+
+    });
+</script>
+</body>
+</html>

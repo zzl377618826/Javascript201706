@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .active {
+            width: 100px;
+            height: 100px;
+            background-color: rebeccapurple;
+        }
+
+        div {
+            border: 3px solid red;
+        }
+    </style>
+</head>
+<body>
+<div id="oDiv"></div>
+<ul id="list">
+    <li>11</li>
+    <li>22</li>
+    <li>33</li>
+</ul>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var list = document.getElementById('list');
+        var lis = list.getElementsByTagName('li');
+        var $lis = $('#list>li');
+        console.log($lis);
+
+        // jq 对象集合 不存在即时更新同步特性
+        setTimeout(function () {
+            var oLi = document.createElement('li');
+            oLi.innerHTML = 666;
+            list.appendChild(oLi);
+            console.log($('#list>li'));
+//            console.log(lis);
+        }, 1000);
+
+//       var oDiv = document.getElementById('oDiv1');
+//       console.log(oDiv);
+
+        // 如何判断jq对象是否存在
+//        var $oDiv = $('#oDiv');
+////        console.log($oDiv);
+//        if ($oDiv.length > 0) {
+//            $oDiv.addClass('active');
+//            console.log(123);
+//        }
+
+//       console.log(oDiv);
+//       console.log($oDiv);
+//       console.log($oDiv === oDiv);
+        // jq 对象转换成 js对象
+//        console.log($oDiv[0]);
+//        console.log($oDiv.get(0));
+
+        // js 对象转换成 jq对象
+//        console.log($(oDiv));
+    });
+</script>
+</body>
+</html>
