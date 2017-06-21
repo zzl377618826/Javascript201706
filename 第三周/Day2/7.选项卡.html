@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        .container {
+            width: 304px;
+            margin: auto;
+        }
+
+        #list {
+            overflow: hidden;
+            border-left: 1px solid black;
+        }
+
+        #list li {
+            float: left;
+            width: 100px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            border: 1px solid black;
+            border-left: none;
+        }
+
+        #list li.active {
+            background-color: #fad59f;
+        }
+
+        .container div {
+            height: 100px;
+            text-align: center;
+            line-height: 100px;
+            border: 1px solid black;
+            border-top: none;
+            display: none;
+        }
+
+        .container div.active {
+            display: block;
+        }
+
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <ul id="list">
+        <li class="active">新闻</li>
+        <li>娱乐</li>
+        <li>综艺</li>
+    </ul>
+    <div class="active">新闻内容</div>
+    <div>娱乐内容</div>
+    <div>综艺内容</div>
+</div>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript">
+
+    $(function () {
+//        $('div').click(function () {
+////            console.log(this); // 原生对象
+////            $(this);
+////            console.log($(this).html());
+////            console.log($(this).index());
+//
+//        });
+
+
+        $("#list > li").click(function () {
+            var n = $(this).index();
+//            $(this).addClass('active').siblings().removeClass('active');
+            // 根据所有eq(n) 找对应div让其显示 其他兄弟隐藏
+//           $('.container > div').eq(n).addClass('active').siblings('div').removeClass('active');
+//            $('.container > div').eq(n).show().siblings('div').hide();
+
+            $(this).addClass('active').siblings().removeClass('active')                     .parent().nextAll('div').eq(n).show()
+                   .siblings('div').hide();
+        })
+    })
+</script>
+</body>
+</html>
