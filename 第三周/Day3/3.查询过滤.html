@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        p span, ul li span{
+            display: inline-block;
+            width: 100px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+        }
+    </style>
+</head>
+<body>
+
+
+查询：<input type="text" id="inp">
+<p><span>id</span><span>name</span><span>age</span><span>分数</span></p>
+<ul id="users">
+    <li><span>1</span><span>lii</span><span>10</span><span>99</span></li>
+    <li><span>2</span><span>lii</span><span>20</span><span>77</span></li>
+    <li><span>3</span><span>fff</span><span>60</span><span>68</span></li>
+    <li><span>4</span><span>cc</span><span>88</span><span>35</span></li>
+    <li><span>5</span><span>zz</span><span>90</span><span>67</span></li>
+</ul>
+
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript">
+    $(function () {
+//        console.log($('#users li:contains(cc)').css('color', 'red'));
+        var $list = $('#users li');
+        $('#inp').on('input', function () {
+            console.log($(this).val()); // this.value
+            var val = $(this).val();
+            if(!/^\s*$/.test(val)){ // 当val不为空的时候在匹配
+                // 先让所有的li隐藏 然后让内容为val的li显示
+                $list.hide().siblings(':contains('+val+')').show();
+            } else {
+                $list.show()
+            }
+
+        })
+    });
+</script>
+</body>
+</html>

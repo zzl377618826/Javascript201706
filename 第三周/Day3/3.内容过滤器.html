@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        p span, ul li span{
+            display: inline-block;
+            width: 100px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+        }
+    </style>
+</head>
+<body>
+<!--<div>12312</div>-->
+<!--<div class="empty"></div>-->
+<!--<div>666 <span>123</span></div>-->
+搜索：<input id="inp" type="text">
+<ul id="list">
+    <li>123</li>
+    <li>789</li>
+    <li>666</li>
+    <li>776</li>
+    <li>106</li>
+    <li>356</li>
+    <li>690</li>
+    <li>265</li>
+    <li>357</li>
+    <li>888</li>
+</ul>
+
+查询：<input type="text">
+<p><span>id</span><span>name</span><span>age</span><span>分数</span></p>
+<ul id="users">
+    <li><span>1</span><span>lii</span><span>10</span><span>99</span></li>
+    <li><span>2</span><span>lii</span><span>10</span><span>99</span></li>
+    <li><span>3</span><span>fff</span><span>10</span><span>99</span></li>
+    <li><span>4</span><span>cc</span><span>10</span><span>99</span></li>
+    <li><span>5</span><span>zz</span><span>10</span><span>99</span></li>
+</ul>
+
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript">
+    $(function () {
+//       console.log($('div:empty').css({
+//           width: '100px',
+//           height: '100px',
+//           background: 'red'
+//       }));
+//        console.log($('div:has(span)').css('color', 'red'));
+//        console.log($('div:parent')); // 匹配作为父级的div
+//        console.log($('#list li:contains(5)'));
+//        $('#list li:contains(5)').css('background', 'red')
+        var $list = $('#list li');
+        $list.hide();
+        $('#inp').on('input',function () {
+            var val = $(this).val();
+            val = val.replace(/\s/g, ''); // 将的到val空格去掉
+            if(!/^\s*$/.test(val)){
+                $list.hide().siblings(':contains('+val+')').show();
+            } else {
+                $list.hide();
+            }
+        });
+        console.log($('#users li:contains(lii)').css('background', 'red'));
+    });
+</script>
+</body>
+</html>

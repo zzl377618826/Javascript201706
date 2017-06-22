@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        a#showMore {
+            display: block;
+            width: 96px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            margin: 5px auto;
+            border: 1px solid #ccc;
+        }
+
+        .container {
+            width: 400px;
+            margin: 20px auto;
+            border: 1px solid #999;
+            padding: 10px;
+        }
+
+        .list {
+            overflow: hidden;
+        }
+
+        .list li {
+            float: left;
+            width: 80px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+        }
+
+        .hot {
+            color: red;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <p>品牌：</p>
+    <ul class="list">
+        <li>华为</li>
+        <li>小米</li>
+        <li>苹果</li>
+        <li>三星</li>
+        <li>OPPO</li>
+        <li>魅族</li>
+        <li>vivo</li>
+        <li>荣耀</li>
+        <li>努比亚</li>
+        <li>锤子</li>
+        <li>360</li>
+        <li>诺基亚</li>
+        <li>酷派</li>
+        <li>乐视</li>
+        <li>摩托罗拉</li>
+        <li>中兴</li>
+        <li>黑莓</li>
+        <li>HTC</li>
+        <li>索尼</li>
+    </ul>
+    <div>
+        <a id="showMore" href="javascript:;">显示全部</a>
+    </div>
+</div>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var $list = $('.list > li');
+        var $moreList = $('.list li:gt(3)'); // 获取索引大于3的li
+        $moreList.hide();
+        $('#showMore').click(function () {
+            $moreList.toggle();
+            if ($moreList.is(':visible')) { // 显示所有的时候
+                // 给热门品牌添加样式
+                $list.siblings(':contains(小米),:contains(HTC),:contains(vivo)').addClass('hot');
+                $(this).html('收起所有')
+            } else { // 没有显示的时候
+                $list.siblings('.hot').removeClass('hot'); // 去掉热门品牌样式
+                $(this).html('显示全部')
+            }
+        })
+    });
+</script>
+</body>
+</html>

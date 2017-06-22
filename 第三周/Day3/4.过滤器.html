@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #oDiv {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+        }
+    </style>
+</head>
+<body>
+<!--<div>12312</div>
+<div class="hidden" style="display: none">3333</div>
+<div>dfff</div>-->
+<button id="btn">显示隐藏</button>
+<div id="oDiv"></div>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript">
+    // :animated :visible :hidden
+    $(function () {
+        console.log($('div:visible')); // 显示的div
+        console.log($('div:hidden')); // 隐藏的div
+        // is 是否显示
+//        console.log($('.hidden').is(':visible'));
+
+        var $oDiv = $('#oDiv');
+        $('#btn').click(function () {
+//            if($oDiv.is(':hidden')){ // 是否隐藏
+//                $oDiv.show(6000); // 如果当前隐藏就显示
+//            } else {
+//                $oDiv.hide(6000); // 如果当前显示就隐藏
+//            }
+
+            $oDiv.toggle(); // show/hide 显示隐藏切换
+        })
+    })
+</script>
+</body>
+</html>
