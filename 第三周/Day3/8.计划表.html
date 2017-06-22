@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #list li{
+            margin-bottom: 10px;
+            height: 30px;
+            line-height: 30px;
+        }
+        #list li a{
+            display: none;
+            width: 20px;
+            height: 20px;
+            text-align: center;
+            line-height: 20px;
+            margin-left: 30px;
+            text-decoration: none;
+            background-color: #ccc;
+            border-radius: 50%;
+            font-size: 12px;
+            color: #fff;
+            font-weight: 600;
+        }
+        #list li a:hover{
+            background-color: #999;
+        }
+
+        #list li:hover a{
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+
+<p id="op"><span>hello  old</span></p>
+新建计划：<input type="text" id="inp">
+<ul id="list">
+    <li><input type="checkbox"> 11 <a href="javascript:;">X</a></li>
+    <li><input type="checkbox"> 22 <a href="javascript:;">X</a></li>
+    <li><input type="checkbox"> 33 <a href="javascript:;">X</a></li>
+</ul>
+
+<button id="removeAll">清空所选</button>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript">
+    $(function () {
+          $('#inp').on('keydown', function (e) {
+               if(e.keyCode === 13) {
+                  var val = $(this).val();
+                  if(/^\s*$/.test(val)) return; // 如果input值 只是空格不需要创建任务
+                  var str = '<li><input type="checkbox">'+val+'<a href="javascript:;">X</a></li>';
+                  $('#list').append(str);
+                  $(this).val('');
+                  // 给动态创建的li的a标签绑定移除事件
+                   bindRemove();
+               }
+          });
+
+          // 移除
+        function bindRemove() {
+            $('#list a').click(function () {
+                $(this).parent().remove();
+            })
+        }
+        bindRemove();
+        $('#removeAll').click(function () {
+              $('#list input:checked').parent().remove();
+        });
+
+    });
+</script>
+</body>
+</html>

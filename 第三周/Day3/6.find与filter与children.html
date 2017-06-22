@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<ul id="oUl">
+    <li>11</li>
+    <li>22</li>
+    <li class="li3">33</li>
+    <li>dd</li>
+    <li>123</li>
+    <div><li class="li3">123123</li></div>
+</ul>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript">
+    $(function () {
+        // find 在指定容器中 查找后代元素
+        console.log($('#oUl').find('li'));
+        // children 获取指定容器中所有子元素
+        console.log($('#oUl').children('li'));
+
+        // filter $('#oUl li') 元素集合中过滤
+        console.log($('#oUl li').filter(':contains(3)'));
+    })
+</script>
+</body>
+</html>
