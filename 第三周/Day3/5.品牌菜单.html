@@ -93,7 +93,7 @@
                 $list.siblings(':contains(小米),:contains(HTC),:contains(vivo)').addClass('hot');
                 $(this).html('收起所有')
             } else { // 没有显示的时候
-                $list.siblings('.hot').removeClass('hot'); // 去掉热门品牌样式
+                $list.removeClass('hot'); // 去掉热门品牌样式
                 $(this).html('显示全部')
             }
         })
