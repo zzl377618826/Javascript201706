@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #oDiv {
+            width: 100px;
+            height: 100px;
+            background-color: blueviolet;
+        }
+    </style>
+</head>
+<body>
+<button id="btn">点击</button>
+<div id="oDiv"></div>
+<!--<ul id="list">-->
+<!--<li>11</li>-->
+<!--<li class="sec">22</li>-->
+<!--<li>33</li>-->
+<!--<li class="sec">44</li>-->
+<!--<p id="op">sdfsdf</p>-->
+<!--</ul>-->
+<div id="panel">
+    <input type="text" id="inp">
+</div>
+
+<input type="text">
+<script type="text/javascript" src="../js/jquery.js"></script>
+<!--<script type="text/javascript" src="../js/jquery-migrate.min.js"></script>-->
+<script type="text/javascript">
+    $(function () {
+        // 容器内部元素 获取到焦点时触发
+        $('#panel').focusin(function () {
+           console.log('focusin');
+            $('#panel').css('background', 'red');
+        });
+        // 容器内部元素 失去到焦点时触发
+        $('#panel').focusout(function () {
+            console.log('focusout');
+            $('#panel').css('background', 'green');
+        });
+        
+//        $('#inp').select(function () { // 复制选中文字
+//            document.execCommand('Copy'); 
+//        });
+        
+        // 整合事件
+//        $('#btn').mouseenter(function () {
+//            console.log('mouseenter');
+//        }).mouseleave(function () {
+//            console.log('mouseleave');
+//        });
+
+        // 滑入 + 滑出
+//        $('#btn').hover(function () {
+//            console.log('mouseenter');
+//        }, function () {
+//            console.log('mouseleave');
+//        });
+
+//        $('#btn').click(function () {
+//            $('#oDiv').toggle(function () { // 动画结束 触发
+//                console.log('end');
+//            }); // 目前版本 控制显示隐藏
+//        })
+
+
+        // 之前版本 的点击事件的整合 新版本中需要插件恢复
+//        $('#btn').toggle(function () {
+//            $('#oDiv').hide();
+//            alert('被隐藏了')
+//        }, function () {
+//            $('#oDiv').show();
+//            alert('显示出来了')
+//        });
+
+
+        // 自定义
+//        $('#btn').on('click', function () {
+//            console.log('我要结婚了 赶紧来上礼');
+//            $('#list').trigger('myEvent',['hello', 'list']);
+//            $('#op').trigger('myEvent',['hello', 'op']);
+//        });
+//        // 触发事件
+//
+//        $('#list').on('myEvent', function (e, a, b) {
+//            console.log(a, b);
+//            alert('list say: hao de  一定去')
+//
+//        });
+//
+//        $('#op').on('myEvent', function (e, a, b) {
+//            console.log(a, b);
+//            alert('op say: hao de  一定去')
+//        })
+
+
+        // 常用事件简写 click mouseover mouseout
+//        $('#btn').click(function () {
+//            console.log('click');
+//        }).mouseover(function () {
+//            console.log('over');
+//        }).on('mouseout', function () {
+//            console.log('out');
+//        })
+
+//        // on
+        // 事件类型 筛选器  数据 处理函数
+//        $('#list').on('click', 'li', {id: 1, name: 'zhufeng'}, function (e) {
+//            console.log(e.data);
+//            console.log('onclick');
+//        });
+
+        // 多个事件行为 绑定同一个处理程序
+//        $('#btn').on('click mouseover', function () {
+//            console.log('haha');
+//        }).mouseout(function () {
+//           console.log('out');
+//        });
+
+//        function fn1() {
+//            console.log('click1');
+//        }
+//
+//        function fn2() {
+//            console.log('click2');
+//        }
+//
+//        function fn3() {
+//            console.log('click3');
+//        }
+//
+//        function fn4() {
+//            console.log('click4');
+//        }
+//        $('#btn').click(fn1);
+//        $('#btn').on('click.event1', fn2);
+//        $('#btn').bind('click.event1', fn3);
+//        $('#btn').bind('mouseover.event1', fn4);
+
+        // off移除绑定的事件
+//        $('#btn').off(); // 移除所有事件
+////      $('#btn').off('click'); // 移除click事件
+////      $('#btn').off('click', fn3); // 移除click事件中的 某一个处理程序
+//        $('#list').on('click', 'li', function () {
+//            console.log('hello world');
+//        });
+//        $('#list').on('click', 'p', function () {
+//            console.log('123123');
+//        });
+
+        // 根据命名空间移除多个不同类型处理程序
+//        $('#btn').off('.event1');
+//        $('#btn').off('click.event1');
+
+        // 移除委托事件
+//        $('#list').off('click', 'li');
+
+        // unbind bind  unbind底层调用的off
+//        $('#btn').unbind();
+
+//        setTimeout(function () {
+//            $('#list').append('<li>zhufeng</li>');
+//            $('#list').append('<li>zhufeng</li>');
+//            $('#list').append('<li>zhufeng</li>');
+//        }, 1000);
+
+
+//        // bind 底层调用的是 on 将事件直接绑定给元素  事件类型 数据 处理函数
+//        $('#list li').bind('click', {say: 'nihao'},function (e) {
+//            console.log('bind');
+//            console.log(e.data);
+//        });
+
+        // 事件委托 可以委托给 任意 祖辈元素
+//        $('#list').delegate('li', 'click', function () {
+//            console.log('click111');
+//        });
+
+//        $('#list').off('click', 'li');
+        // 移除delegate绑定的事件
+//        $('#list').undelegate('li', 'click');
+
+
+        // live 事件委托 委托给document 被废除的方法
+//        $('#list li').live('click', function () {
+//            console.log('document');
+//        })
+        // on 对 bind delegate live 整合统一
+
+
+    });
+</script>
+</body>
+</html>
