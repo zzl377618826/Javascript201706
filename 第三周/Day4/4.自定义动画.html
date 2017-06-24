@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #oDiv {
+            width: 100px;
+            height: 100px;
+            background-color: blueviolet;
+        }
+
+        #oDiv {
+            position: absolute;
+            top: 40px;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+<button id="left">left</button>
+<button id="right">right</button>
+<button id="pause">暂停</button>
+<button id="finish">终止</button>
+<button id="slide">下拉收起</button>
+<button id="btn1">禁止动画</button>
+<button id="btn2">开启动画</button>
+<div id="oDiv"></div>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#btn1').click(function () {
+            $.fx.off = true; // 禁止所有动画
+        });
+        $('#btn2').click(function () {
+            $.fx.off = false; // 开启所有动画
+        });
+
+
+        $('#slide').hover(function () {
+//            $('#oDiv').stop().slideToggle(); // 预防动画累积
+//            $('#oDiv').slideToggle();
+            $('#oDiv').stop().animate({left: 0}, 1000);
+        }, function () {
+            $('#oDiv').stop().animate({left: 500}, 1000);
+//            $('#oDiv').stop().slideToggle(); // 预防动画累积
+//            $('#oDiv').slideToggle();
+        });
+
+        var val;
+        $('#left').click(function () {
+            val = parseFloat($('#oDiv').css('left'));
+            $('#oDiv').animate({left: 0}, 1500);
+        });
+
+        $('#right').click(function () {
+            val = parseFloat($('#oDiv').css('left'));
+            $('#oDiv').animate({left: 600}, 1000)
+                .animate({top: 500}, 1000)
+                .animate({left: 0}, 1000)
+//                .animate({top: 30}, 1000)
+        });
+
+        $('#pause').click(function () {
+//            $('#oDiv').stop(); // 暂停当前动画（不会终止后面队列动画）
+//            $('#oDiv').stop(true); // 终止后面所有队列动画（清除队列动画）
+//            $('#oDiv').stop(true, true); // 终止后面所有队列动画(跳转到当前动画的目标值)
+//            $('#oDiv').finish(); // 终止动画 （跳转到所有动画最终的目标值）
+        });
+        $('#finish').click(function () {
+//            $('#oDiv').finish();
+        })
+
+        // 队列动画 一个一个执行
+//        $('#oDiv').animate({width: 300}, 500, 'linear', function () {
+//            console.log('结束了');
+//            $('#oDiv').animate({height: 300}, 500, function () {
+//                $(this).animate({opacity: 0}, 500);
+//            });
+//        });
+//        $('#oDiv').animate({width: 300}, 500)
+//                  .animate({height: 300}, 500)
+//                  .animate({opacity: 0});
+
+
+        // 同时执行
+//        $('#oDiv').animate({width: 300, height: 300, opacity: 0}, 500)
+    });
+</script>
+</body>
+</html>

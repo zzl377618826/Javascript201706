@@ -21,30 +21,30 @@
 <!--<li class="sec">44</li>-->
 <!--<p id="op">sdfsdf</p>-->
 <!--</ul>-->
-<div id="panel">
-    <input type="text" id="inp">
-</div>
+<!--<div id="panel">-->
+    <!--<input type="text" id="inp">-->
+<!--</div>-->
 
-<input type="text">
+<!--<input type="text">-->
 <script type="text/javascript" src="../js/jquery.js"></script>
 <!--<script type="text/javascript" src="../js/jquery-migrate.min.js"></script>-->
 <script type="text/javascript">
     $(function () {
         // 容器内部元素 获取到焦点时触发
-        $('#panel').focusin(function () {
-           console.log('focusin');
-            $('#panel').css('background', 'red');
-        });
+//        $('#panel').focusin(function () {
+//            console.log('focusin');
+//            $('#panel').css('background', 'red');
+//        });
         // 容器内部元素 失去到焦点时触发
-        $('#panel').focusout(function () {
-            console.log('focusout');
-            $('#panel').css('background', 'green');
-        });
-        
+//        $('#panel').focusout(function () {
+//            console.log('focusout');
+//            $('#panel').css('background', 'green');
+//        });
+
 //        $('#inp').select(function () { // 复制选中文字
 //            document.execCommand('Copy'); 
 //        });
-        
+
         // 整合事件
 //        $('#btn').mouseenter(function () {
 //            console.log('mouseenter');
@@ -189,6 +189,10 @@
 //        })
         // on 对 bind delegate live 整合统一
 
+        // 一次性事件
+//        $('#btn').one('click', function () {
+//            console.log('one');
+//        });
 
     });
 </script>

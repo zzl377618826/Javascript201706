@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #oDiv {
+            width: 100px;
+            height: 100px;
+            background-color: blueviolet;
+        }
+    </style>
+</head>
+<body>
+<button id="btn">切换动画</button>
+<div id="oDiv"></div>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript">
+    $(function () {
+        // show/hide
+//       $('#btn').on('click', function () {
+//           if($('#oDiv').is(':visible')){
+//               // 过渡时间  运动方式  动画结束回调函数
+//               $('#oDiv').hide(300, 'linear', function () {
+//                   console.log('隐藏完毕');
+//               });
+//           } else {
+//               $('#oDiv').show(300, 'linear', function () {
+//                   console.log('显示完毕');
+//                  $(this).css('background', 'green')
+//               });
+//           }
+//       })
+
+        // toggle => show/hide
+//       $('#btn').on('click', function () {
+//           $('#oDiv').toggle(300, 'linear', function () {
+//               console.log('动画结束');
+//           });
+//       });
+        //  slideDown/slideUp 下拉收起
+//       $('#btn').on('click', function () {
+//           if($('#oDiv').is(':visible')) {
+//               $('#oDiv').slideUp(1300, 'linear', function () {
+//                   console.log('slideUp');
+//               });
+//           } else {
+//               $('#oDiv').slideDown(1300, 'linear', function () {
+//                   console.log('slideDown');
+//               });
+//           }
+//       })
+        //slideToggle => slideDown/slideUp
+//       $('#btn').on('click', function () {
+//           $('#oDiv').slideToggle(300, 'linear', function () {
+//               console.log('动画结束');
+//           });
+//       });
+        // fadeIn/fadeOut 渐入渐出
+//       $('#btn').on('click', function () {
+//           if($('#oDiv').is(':visible')) {
+//               $('#oDiv').fadeOut(300, 'linear', function () {
+//                   console.log('slideUp');
+//               });
+//           } else {
+//               $('#oDiv').fadeIn(300, 'linear', function () {
+//                   console.log('slideDown');
+//               });
+//           }
+//       })
+
+        // fadeToggle => fadeIn/fadeOut
+//       $('#btn').on('click', function () {
+//           $('#oDiv').fadeToggle(300, 'linear', function () {
+//               console.log('结束了');
+//           });
+//       });
+
+        // fadeTo 指定opacity 为多少
+//       $('#btn').on('click', function () {
+//           $('#oDiv').fadeTo(300,  0.5, 'linear', function () {
+//               console.log('结束了');
+//           });
+//       });
+
+    })
+</script>
+</body>
+</html>
