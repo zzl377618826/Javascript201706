@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<button id="btn">请求数据</button>
+<input type="text" id="inp">
+<ul id="list"></ul>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script>
+    $(function () {
+
+//         get 请求
+//        $.get('data.json', {name: 'liwenli'}, function (res) {
+//            console.log(res);
+//        });
+//        // post 请求
+//        $.post('data.txt', {name: 'liwenli'}, function (res) {
+//            console.log(res);
+//        });
+//
+//        // 请求json数据
+//        $.getJSON('data.json', {name: 'zhufeng'}, function (res) {
+//            console.log(res);
+//        });
+//     请求外部脚本
+        $('#btn').click(function () {
+            $.getScript('index.js', function (res) {
+                console.log(res);
+            });
+        });
+
+
+//        $.ajax({
+//            url: 'data.json',
+//            type: 'get', // post
+//            data: { // get请求会将数据拼接到url问号后面  ?id=24&name=zhufeng
+//                   // post放在请求体里
+//              id: 24,
+//              name: 'zhufeng'
+//            },
+//            dataType: 'json',
+//            success: function (res) {
+//                console.log(res);
+//            }
+//        });
+
+       $('#inp').on('input',function () {
+           var val = $('#inp').val();
+           if(/^\s*$/.test(val)){
+               $('#list').html('');
+               return;
+           }
+           $.ajax({
+               url: 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su',
+               type: 'get',
+               dataType: 'jsonp', // 跨域请求
+               data: {
+                   wd: val,
+                   json: 1
+               },
+               jsonp: 'cb', // cb 后台定的 函数名
+               success: function (res) {
+                   console.log(res.g);
+                   var str = '';
+                   $.each(res.g, function (ind, item) {
+                      str += '<li>'+item.q+'</li>'
+                   });
+                   $('#list').html(str);
+               }
+           })
+       });
+
+       $('#btn').click(function () {
+          $.ajax({
+              // ajax对象 options 参数对象
+              beforeSend: function (xhr, options) { // 请求之前调用
+//                  console.log(arguments);
+              },
+              url: 'https://sp0.baidu.com/5a1Fazu8AA54nxGko9WTAnF6hhy/su', // 请求地址
+              type: 'GET', // 请求方式
+              async: true,  // 是否异步
+              data: { // 向后台发送数据
+                wd: '刘德华',
+                json: 1
+              },
+//              dataType: 'json', // 请求回来的数据 解析方式
+              dataType: 'jsonp',  // 跨域请求
+              jsonp: 'cb', // 跨域请求的函数名
+              success: function (res) { // 请求成功的回调
+                  console.log(res); // 成功请求数据
+              },
+              // ajax对象 错误类型 错误信息
+              error: function (xhr, err, errText) { // 请求错误回调
+//                  console.log(arguments);
+              },
+              complete: function (xhr, status) { // 请求结束后 执行 不管成功与失败 都会执行
+//                  console.log(arguments);
+              }
+          });
+       });
+    });
+//    var xhr = new XMLHttpRequest();
+//    xhr.open('get', 'data.json', true);
+//    xhr.onreadystatechange = function () {
+//        // 200 201 202
+//        if (this.readyState === 4 && /^2\d{2}$/.test(this.status)) {
+//            console.log(this.responseText);
+//        }
+//    };
+//    xhr.send(JSON.stringify({name: 'zhufeng'})); 将数据以JSON字符串格式 放到请求体里
+
+</script>
+</body>
+</html>
