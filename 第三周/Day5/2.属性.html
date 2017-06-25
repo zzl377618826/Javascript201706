@@ -3,39 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style type="text/css">
+        #oDiv{
+            width: 100px;
+            height: 100px;
+            /*background-color: red;*/
+        }
+    </style>
 </head>
 <body>
 <p>123123</p>
-<button id="btn">+</button>
+<button id="btn" hello="zhufeng">+</button>
 <input type="number" id="inp" value="2">
 <button id="btn2">-</button>
+<br>
+增加宽：<input type="checkbox" id="radio1" >
+增加高：<input type="checkbox" id="radio2" >
+改变背景颜色：<input type="color" id="color">
+<div id="oDiv"></div>
 <script type="text/javascript" src="../js/jquery.js"></script>
 <script type="text/javascript">
     $(function () {
+        $('#radio1').change(function () {
+            var flag = $(this).prop('checked');
+            if(flag) {
+                $('#oDiv').width(300);
+            }else {
+                $('#oDiv').width(100);
+            }
+        });
+        $('#radio2').change(function () {
+            var flag = $(this).prop('checked');
+            if(flag) {
+                $('#oDiv').height(300);
+            }else {
+                $('#oDiv').height(100);
+            }
+        });
+        // 设置初始颜色值
+        $('#oDiv').css('background', $('#color').val());
+        $('#color').change(function () {
+            console.log($(this).val());
+            $('#oDiv').css('background', $(this).val());
+        });
+
+
+//        // attr prop 操作html属性
+//        // 获取
+//        console.log($('#btn').attr('id'));
+//        console.log($('#btn').attr('hello'));
+//        // 设置
+//        console.log($('#btn').attr('hello', 'reactjs'));
+//
+//
+//        // 操作固有属性
+//        console.log($('#btn').prop('hello', 'vuejs'));
+//        console.log($('#btn').prop('hello'));
+//        console.log($('#btn').prop('id', 'vuejs'));
+//        $('#radio').change(function () {
+////            console.log($(this).attr('checked'));
+////            console.log($(this).prop('checked'));
+//            if($(this).prop('checked')) { // 根据选中状态 作出相应处理
+//                $('#oDiv').addClass('active')
+//            } else {
+//                $('#oDiv').removeClass('active')
+//            }
+//        })
+
+
+
+
         // html text val
 //        $('p').html();
 //       $('p').html('<h3>nihao</h3>');
-       $('p').html(function (n, cur) {
-           return '<h3>'+cur+'</h3>'
-       });
+//       $('p').html(function (n, cur) {
+//           return '<h3>'+cur+'</h3>'
+//       });
 
-        console.log($('#inp').val());
+//        console.log($('#inp').val());
 //        $('#inp').val(123123);
 
-        $('#btn').click(function () {
-            $('#inp').val(function (n, cur) {
-                console.log(arguments);
-                return +cur + 10;
-
-            });
-        });
-        $('#btn2').click(function () {
-            $('#inp').val(function (n, cur) {
-                console.log(arguments);
-                return +cur - 10;
-
-            });
-        })
+//        $('#btn').click(function () {
+//            $('#inp').val(function (n, cur) {
+//                console.log(arguments);
+//                return +cur + 10;
+//
+//            });
+//        });
+//        $('#btn2').click(function () {
+//            $('#inp').val(function (n, cur) {
+//                console.log(arguments);
+//                return +cur - 10;
+//
+//            });
+//        })
 
     })
 </script>
