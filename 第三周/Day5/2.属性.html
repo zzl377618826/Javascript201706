@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<p>123123</p>
+<button id="btn">+</button>
+<input type="number" id="inp" value="2">
+<button id="btn2">-</button>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript">
+    $(function () {
+        // html text val
+//        $('p').html();
+//       $('p').html('<h3>nihao</h3>');
+       $('p').html(function (n, cur) {
+           return '<h3>'+cur+'</h3>'
+       });
+
+        console.log($('#inp').val());
+//        $('#inp').val(123123);
+
+        $('#btn').click(function () {
+            $('#inp').val(function (n, cur) {
+                console.log(arguments);
+                return +cur + 10;
+
+            });
+        });
+        $('#btn2').click(function () {
+            $('#inp').val(function (n, cur) {
+                console.log(arguments);
+                return +cur - 10;
+
+            });
+        })
+
+    })
+</script>
+</body>
+</html>
