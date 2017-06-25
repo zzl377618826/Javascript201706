@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        .active1 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            border: 3px solid blue;
+            padding: 10px;
+            margin: 20px;
+        }
+
+        .active2 {
+            width: 200px;
+            height: 200px;
+            background-color: #99fff8;
+            border: 3px solid blue;
+            padding: 10px;
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+<button id="btn">增加类名</button>
+<div id="oDiv" class="active2"></div>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#btn').click(function () {
+            if($('#oDiv').hasClass('active1')) {
+                $('#oDiv').removeClass('active1').addClass('active2');
+                return;
+            }
+            $('#oDiv').addClass('active1').removeClass('active2');
+        });
+//        $('#btn').click(function () {
+//            $('#oDiv').toggleClass('active1 active2'); // 切换类名
+//        })
+    })
+</script>
+</body>
+</html>

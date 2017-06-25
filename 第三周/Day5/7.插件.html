@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div></div>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript">
+    $(function () {
+        // 在jq的自身属性上扩展方法 $.
+        $.extend({
+            add: function (a, b) {
+                return a + b;
+            }
+        });
+        console.log($.add(10, 20));
+
+        // 在jq原型上扩展方法
+        $.fn.extend({
+            say: function (test) {
+                console.log(test);
+                console.log(this);
+                return this
+            },
+            hi: function () {
+                console.log('hi');
+                return this
+            }
+        });
+        $('div').say('zhufeng').hi().css({
+            width: 100,
+            height: 100,
+            background: 'red'
+        });
+
+    })
+</script>
+</body>
+</html>

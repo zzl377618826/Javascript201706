@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<form id="form1">
+    <div><label for="name">用户名：</label><input type="text"  id="name" name="username"></div>
+    <div><label for="tel">电话：</label><input type="text"  id="tel" name="usertel"></div>
+        <div><label for="email">邮箱：</label><input type="text"  id="email" name="useremail"></div>
+    <button type="button" id="btn">提交</button>
+</form>
+<script type="text/javascript" src="../js/jquery.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#btn').click(function () {
+            console.log($('#form1').serialize()); // 序列化 查询字符串
+            console.log($('#form1').serializeArray()); // 序列化 数组
+        })
+    })
+</script>
+</body>
+</html>
